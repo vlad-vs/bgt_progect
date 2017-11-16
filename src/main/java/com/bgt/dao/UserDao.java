@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.sql.DataSource;
+import java.util.List;
 
 @Transactional
 @Repository("userDao")
@@ -35,13 +36,21 @@ public class UserDao {
     @Transactional
     public void setUserToData(User user) {
 //        String sql = "INSERT INTO users (idUSER, USER_NAME, USER_SECOND_NAME, USER_PASSWORD) VALUES (:idUSER, :USER_NAME, :USER_SECOND_NAME, :USER_PASSWORD)";
-//        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-//        parameterSource.addValue("idUSER",user.getId());
-//        parameterSource.addValue("USER_NAME",user.getName());
-//        parameterSource.addValue("USER_SECOND_NAME",user.getSecondName());
-//        parameterSource.addValue("USER_PASSWORD",user.getPassword());
-//        jdbcTemplate.update(sql,parameterSource);
-        entityManager.persist(user);
+        User b = entityManager.find(User.class,user.getId());
+        if  (b!=null){
+            System.out.println("contains = " + b);
+        } else {
+            System.out.println("contains = " + b);
+            entityManager.persist(user);
+        }
+    }
+
+    @Transactional
+    public List<User> findAllUsers() {
+        String qverySql = "SELECT ALL * FROM USERS";
+        Query query = entityManager.createNativeQuery(qverySql,User.class);
+        List users = query.getResultList();
+        return users;
     }
 
 //    public Object getUserFromData(long id) {

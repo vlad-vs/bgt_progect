@@ -1,0 +1,33 @@
+
+
+.table {
+    /*border: 1px solid black;*/
+}
+.table-head {
+    background: grey;
+    font-weight: 800;
+}
+.table-light {
+    background: ghostwhite;
+}
+.table-dark {
+    background: lightgray;
+}
+td {
+    border: none;
+    padding: 10px;
+}
+.form-group {
+    margin-right: 25px;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.form-input-id {
+    width: 100px;
+    height: 15px;
+}
+.form-input-item {
+    width: 150px;
+    height: 15px;
+}

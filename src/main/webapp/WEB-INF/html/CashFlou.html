@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/cash.css">
+</head>
+<body>
+
+<h1>Справочник статей отчета о движении денежных средств</h1>
+
+<table class="table">
+    <tr class="table-head"><td>ID (kode)</td><td>Item name</td></tr>
+    <tr class="table-light"><td>01</td><td>Cash1</td></tr>
+    <tr class="table-dark"><td>02</td><td>Cash2</td></tr>
+    <tr class="table-light"><td>03</td><td>Cash3</td></tr>
+</table>
+
+<form class="sigh-in-form">
+    <div class="form-group">
+        <label for="itemId">Item ID</label>
+        <input type="text" class="form-input-id" id="itemId" aria-describedby="emailHelp"
+               placeholder="ID">
+    </div>
+
+    <div class="form-group">
+        <label for="InputItem">Item</label>
+        <input type="text" class="form-input-item" id="InputItem" placeholder="Item name">
+    </div>
+    <div class="form-group">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Down level
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Add/Refresh</button>
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
+
+</body>
+</html>
