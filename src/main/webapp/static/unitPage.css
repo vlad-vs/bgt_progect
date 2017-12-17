@@ -1,0 +1,44 @@
+body {
+    font-size: 16px
+}
+
+/*td{*/
+/*border: 1px solid black;*/
+/*padding: 1px;*/
+/*text-align: center;*/
+/*}*/
+
+.header {
+    display: block;
+    box-sizing: border-box;
+}
+
+/*input{*/
+/*border: none;*/
+/*font-size: 12px;*/
+/*}*/
+
+.table-head {
+    text-align: center;
+}
+
+.form-group-units {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.btnSaveItem {
+    background: lightgreen;
+    font-weight: 800;
+    /*padding: 5px;*/
+}
+.btnDelItem {
+    background: red;
+    font-weight: 800;
+}
+.btnUpItem {
+    background: lightyellow;
+    font-weight: 800;
+}

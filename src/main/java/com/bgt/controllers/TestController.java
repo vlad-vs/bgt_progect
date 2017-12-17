@@ -1,60 +1,51 @@
 package com.bgt.controllers;
 
-
-import com.bgt.dao.UserDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.bgt.entityes.guides.Cfo1Guide;
+import com.bgt.entityes.guides.UnitsGuide;
+import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.Column;
 import java.util.List;
 
 @Controller
 public class TestController {
 
-    @Autowired
-    UserDao dao;
+	@Autowired
+	GuidesService service;
 
-    private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+	@RequestMapping(value = "/test",method = RequestMethod.GET)
+	public String getTest(){
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String test(){
-        logger.info("==============================>>>> public View test");
-        return "index";
-    }
+		Cfo1Guide cfo1Guideitem = new Cfo1Guide("cfo-4","Acouting4");
 
-    @RequestMapping(value = "/addToBase",method = RequestMethod.GET)
-    public ModelAndView toAddUserToBase(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users");
-        List users = dao.findAllUsers();
-        modelAndView.addObject("list",users);
+		service.addCfo1Item(cfo1Guideitem);
 
-        logger.info("============================================================>>>> end setUserToData");
+		UnitsGuide unit = new UnitsGuide("unit-1","CompanyName1");
 
-        return modelAndView;
-    }
+		UnitsGuide unit2 = (UnitsGuide) service.getUnitByKod(unit.getKodUnit());
 
-//	@RequestMapping(value = "/addToBase/{itemId}/{UserName}/{iteUserFamylimId}/{UserPassword}",method = RequestMethod.GET)
-	@RequestMapping(value = "/addUser",method = RequestMethod.GET)
-	public String addUserToBase(@RequestParam ("itemId") Integer itemId,
-								@RequestParam ("UserName") String UserName,
-								@RequestParam ("iteUserFamylimId") String UserFamyli,
-								@RequestParam ("UserPassword") String UserPassword){
+//		unit2.getCfo1Guid().add(cfo1Guideitem);
 
-		logger.info("==============================>>>> public View addUserToBase +++ " + itemId + UserName);
+		if (unit2!=null) {
+			List <Cfo1Guide> t = unit2.getCfo1Guid();
+			t.add(cfo1Guideitem);
+			unit2.setCfo1Guid(t);
+			service.updateUnitItem(unit2);
 
-		return "index";
-	}
+		} else {
+			unit.getCfo1Guid().add(cfo1Guideitem);
+			service.addUnitItem(unit);
+		}
 
-	@RequestMapping(value = "/delUser",method = RequestMethod.POST)
-	public String delUserFromBase(){
-		logger.info("==============================>>>> public View delUserFromBase");
 
-		return "index";
+
+
+
+		return "/index";
 	}
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 @Transactional
 @Repository("userDao")
-public class UserDao {
+public class UsersGideDao {
 
 //    private NamedParameterJdbcTemplate jdbcTemplate;
 //
@@ -34,23 +34,33 @@ public class UserDao {
     EntityManager entityManager;
 
     @Transactional
-    public void setUserToData(User user) {
+    public void insertUserToData(User user) {
+        entityManager.persist(user);
 //        String sql = "INSERT INTO users (idUSER, USER_NAME, USER_SECOND_NAME, USER_PASSWORD) VALUES (:idUSER, :USER_NAME, :USER_SECOND_NAME, :USER_PASSWORD)";
-        User b = entityManager.find(User.class,user.getId());
-        if  (b!=null){
-            System.out.println("contains = " + b);
-        } else {
-            System.out.println("contains = " + b);
-            entityManager.persist(user);
-        }
+//        User b = entityManager.find(User.class,user.getIdUser());
+//
+//        if  (b!=null){
+//            entityManager.merge(user);
+//            System.out.println("updated = " + b);
+//        } else {
+//            System.out.println("created = " + b);
+//            entityManager.persist(user);
+//        }
     }
 
     @Transactional
     public List<User> findAllUsers() {
-        String qverySql = "SELECT ALL * FROM USERS";
+        String qverySql = "SELECT ALL * FROM USERS ORDER BY USER_NAME";
         Query query = entityManager.createNativeQuery(qverySql,User.class);
         List users = query.getResultList();
         return users;
+    }
+
+    @Transactional
+    public User delUsersById(int idUser) {
+        User userToDel = entityManager.find(User.class,idUser);
+        entityManager.remove(userToDel);
+        return userToDel;
     }
 
 //    public Object getUserFromData(long id) {

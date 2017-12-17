@@ -1,0 +1,43 @@
+body{
+    font-size: 16px
+}
+td{
+    border: 1px solid black;
+    padding: 1px;
+    text-align: center;
+}
+
+.nameCol{
+    font-size: 12px;
+}
+.nameColNumbers{
+    font-size: 10px;
+}
+.inVal{
+    font-size: 12px;
+}
+.bgtTable {
+    margin-top: 20px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.header{
+    display: block;
+    box-sizing: border-box;
+}
+input{
+    border: none;
+    font-size: 12px;
+}
+.inputQ {
+    width: 25px;
+}
+.inputP {
+    width: 25px;
+}
+.inputUSD {
+    width: 35px;
+}
+.inputUAH {
+    width: 35px;
+}
