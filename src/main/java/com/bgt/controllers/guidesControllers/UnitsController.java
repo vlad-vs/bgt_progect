@@ -2,6 +2,8 @@ package com.bgt.controllers.guidesControllers;
 
 import com.bgt.entityes.guides.Units;
 import com.bgt.services.UnitsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -18,50 +20,59 @@ import java.util.List;
 @Controller
 public class UnitsController {
 
-	@Autowired
-	UnitsService service;
+    @Autowired
+    UnitsService service;
 
-	@RequestMapping(value = "/units", method = RequestMethod.GET)
-	public String getUnitPage(Model model) {
-		List<Units> listUnits = service.getAllItems();
-		model.addAttribute("list", listUnits);
-		model.addAttribute("unitNames",listUnits);
-		return "/units";
-	}
+    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 
-	@RequestMapping(value = "/addUnit", method = RequestMethod.POST)
-	public String addUnit(@RequestParam("ParentName") String pName,
-						  @RequestParam("UnitKod") String kod,
-						  @RequestParam("UnitName") String name,
-						  Model model) {
-		String returnStr = "redirect:/units";
-		try {
-			Units unit = new Units(name,kod);
-			Units unitParent = service.getUnitByName(pName);
-			service.addItem(unit,unitParent);
+    @RequestMapping(value = "/units", method = RequestMethod.GET)
+    public String getUnitPage(Model model) {
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => getUnitPage => start" + "\n");
+        List<Units> listUnits = service.getAllItems();
+        model.addAttribute("list", listUnits);
+        model.addAttribute("unitNames", listUnits);
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => getUnitPage => end" + "\n");
+        return "/units";
+    }
 
-		}catch (DataIntegrityViolationException e){
-			e.printStackTrace();
-			model.addAttribute("error","Введено уже существующее наименование подразделения или код");
-			model.addAttribute("errorHelp","Вернитесь на предыдущую строку и проверьте поля КОД и НАИМЕНОВАНИЕ");
-			returnStr = "/exemption";
-		}
-		return returnStr;
-	}
+    @RequestMapping(value = "/addUnit", method = RequestMethod.POST)
+    public String addUnit(@RequestParam("ParentName") String pName,
+                          @RequestParam("UnitKod") String kod,
+                          @RequestParam("UnitName") String name,
+                          Model model) {
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => addUnit => start" + "\n");
+        String returnStr = "redirect:/units";
+        try {
+            Units unit = new Units(name, kod);
+            Units unitParent = service.getUnitByName(pName);
+            service.addItem(unit, unitParent);
 
-	@RequestMapping(value = "/unit/del/{id}",method = RequestMethod.POST)
-	public String deleteUnit(@PathVariable ("id") int id){
-		service.delItemBiId(id);
-		return "redirect:/units";
-	}
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Введено уже существующее наименование подразделения или код");
+            model.addAttribute("errorHelp", "Вернитесь на предыдущую строку и проверьте поля КОД и НАИМЕНОВАНИЕ");
+            returnStr = "/exemption";
+        }
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => addUnit => end" + "\n");
+        return returnStr;
+    }
 
-	@RequestMapping(value = "/unit/up/{id}",method = RequestMethod.POST)
-	public String deleteUnit(@PathVariable ("id") int id,
-						   @RequestParam ("Name") String name,
-						   @RequestParam ("fKod") String fKod) {
-		service.upItem(id,name,fKod);
+    @RequestMapping(value = "/unit/del/{id}", method = RequestMethod.POST)
+    public String deleteUnit(@PathVariable("id") int id) {
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
+        service.delItemBiId(id);
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
+        return "redirect:/units";
+    }
 
-		return "redirect:/units";
-	}
+    @RequestMapping(value = "/unit/up/{id}", method = RequestMethod.POST)
+    public String deleteUnit(@PathVariable("id") int id,
+                             @RequestParam("Name") String name,
+                             @RequestParam("fKod") String fKod) {
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
+        service.upItem(id, name, fKod);
+        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
+        return "redirect:/units";
+    }
 
 }
