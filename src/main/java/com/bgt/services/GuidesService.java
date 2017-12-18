@@ -3,7 +3,6 @@ package com.bgt.services;
 import com.bgt.dao.*;
 import com.bgt.dao.guidesDao.CurrencyDao;
 import com.bgt.dao.guidesDao.YearDao;
-import com.bgt.entityes.User;
 import com.bgt.entityes.guides.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,7 @@ public class GuidesService {
 	@Autowired
 	ProfitAndLossDao plDao;
 
-	@Autowired
-	UsersDao userDao;
+
 
 	@Autowired
 	CurrencyDao currencyDao;
@@ -27,13 +25,13 @@ public class GuidesService {
 	YearDao yearDao;
 
 	@Autowired
-	BgtGuideDao bgtDao;
+	BgtDao bgtDao;
 
 	@Autowired
     CompanyDao companyDao;
 
 
-	public void addPlItem(ProfitAndLossGuide item){
+	public void addPlItem(ProfitAndLoss item){
 		plDao.insertProfitAndLossItem(item);
 	}
 
@@ -41,73 +39,60 @@ public class GuidesService {
 		plDao.deleteProfitAndLossItemById(id);
 	}
 
-	public void updatePlItem(ProfitAndLossGuide item){
+	public void updatePlItem(ProfitAndLoss item){
 		plDao.updateProfitAndLossItem(item);
 	}
 
-	public List<ProfitAndLossGuide> getAllPlItems() {
+	public List<ProfitAndLoss> getAllPlItems() {
 		return plDao.getAllItems();
 	}
 
-	public void addUserItem(User user){
-		userDao.insertUserToData(user);
-	}
-	public void delUserItem(int id){
-		userDao.delUsersById(id);
-	}
-	public void updateUserItem(User user){
-		// TODO: 22.11.17
-	}
 
-	public List<User> getAllUsersItems() {
-		return userDao.findAllUsers();
-	}
-
-	public void addCurrencyItem(CurrencyGuide item){
+	public void addCurrencyItem(Currency item){
 		currencyDao.addCurrencyItemToBase(item);
 	}
 	public void delCurrencyItem(int id){
 		currencyDao.deleteCurrencyItem(id);
 	}
-	public void updateCurrencyItem(CurrencyGuide item){
+	public void updateCurrencyItem(Currency item){
 		// TODO: 22.11.17
 	}
 
-	public List<CurrencyGuide> getAllCurrencyItems() {
+	public List<Currency> getAllCurrencyItems() {
 		return currencyDao.getAllCurrencyItems();
 	}
 
-	public void addYearItem(YearGuide item){
+	public void addYearItem(Year item){
 		yearDao.insertYearItem(item);
 	}
 
 	public void delYearItem(int id){
 		yearDao.delYearItemById(id);
 	}
-	public void updateYearItem(YearGuide item){}
+	public void updateYearItem(Year item){}
 	// TODO: 22.11.17
 
-	public List<YearGuide> getAllYearItems() {
+	public List<Year> getAllYearItems() {
 		return yearDao.getAllYearItems();
 	}
 
-	public void addBgtItem(BgtGuide item){
+	public void addBgtItem(Bgt item){
 		bgtDao.insertBgtItem(item);
 	}
 
 	public void delBgtItem(int id){
 		bgtDao.delBgtById(id);
 	}
-	public void updateBgtItem(BgtGuide item){
+	public void updateBgtItem(Bgt item){
 	}
 
-	public List<BgtGuide> getAllBtgItems(){
+	public List<Bgt> getAllBtgItems(){
 		return bgtDao.getAllBgtItems();
 	}
 
 
 
-	public void addCompanyItem(CompaniesGuide item){
+	public void addCompanyItem(Company item){
 		companyDao.insertCompanyItem(item);
 	}
 
@@ -115,11 +100,11 @@ public class GuidesService {
 		companyDao.delCompanyItemById(id);
 	}
 
-	public void updateCimpanyItem(YearGuide item){
+	public void updateCimpanyItem(Year item){
 //		bgtDao.
 	}
 
-	public List<CompaniesGuide> getAllCompanyItems(){
+	public List<Company> getAllCompanyItems(){
 		return companyDao.getAllCompanyesItems();
 	}
 

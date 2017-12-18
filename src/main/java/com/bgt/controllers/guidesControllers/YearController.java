@@ -1,6 +1,6 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Year;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class YearController {
 
 	@RequestMapping(value = "addYearGuideItem",method = RequestMethod.POST)
 	public String addYearGuideItem(@RequestParam ("item") int item) {
-		service.addYearItem(new YearGuide(item));
+		service.addYearItem(new Year(item));
 
 		return "redirect:/yearGuide";
 	}

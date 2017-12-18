@@ -1,7 +1,6 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.entityes.guides.BgtGuide;
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Bgt;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ public class BgtGuideController {
 	@RequestMapping(value = "/addBgtGuideItem",method = RequestMethod.POST)
 	public String addBgtGuideItem(@RequestParam ("kodItemBgt") String item,
 								  @RequestParam ("bgtName") String bgtName) {
-		service.addBgtItem(new BgtGuide(item,bgtName));
+		service.addBgtItem(new Bgt(item,bgtName));
 		return "redirect:/bgtGuide";
 	}
 	@RequestMapping(value = "/bgtGuide/del/{id}")

@@ -1,6 +1,6 @@
 package com.bgt.controllers;
 
-import com.bgt.entityes.guides.CashFlowGuide;
+import com.bgt.entityes.guides.CashFlow;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +18,7 @@ public class IndexPageController {
 
 
 	@RequestMapping(value="/cfItem", method=RequestMethod.POST)
-	public String greetingSubmit(@ModelAttribute ("cfItem") CashFlowGuide cfItem, BindingResult bindingResult, Model model) {
+	public String greetingSubmit(@ModelAttribute ("cfItem") CashFlow cfItem, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("bnError========================================================");
 		} else model.addAttribute("cfItem", cfItem);

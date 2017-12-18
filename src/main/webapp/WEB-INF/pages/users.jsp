@@ -31,8 +31,8 @@
         <label for="UserPassword">Password</label>
         <input type="password" class="form-input-item" id="UserPassword" name="UserPassword" placeholder="****">
     </div>
-        <input type="submit" class="btn btn-primary" value="Add/Refresh" formaction="/addRefreshUser"/>
-        <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delUser"/>--%>
+    <input type="submit" class="btn btn-primary" value="Seve" formaction="/addUser"/>
+    <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delUser"/>--%>
 </form>
 
 <table class="table">
@@ -40,18 +40,23 @@
         <td>User name</td>
         <td>User family</td>
         <td>Password</td>
-        <td>Delete</td>
     </tr>
+
     <c:forEach var="list" items="${list}">
         <tr class="table-light">
-            <td>${list.name}</td>
-            <td>${list.secondName}</td>
-            <td>${list.password}</td>
-            <td>
-                <form  method="post">
-                    <input type="submit" value="del" formaction="/delUser/${list.idUser}">
-                </form>
-            </td>
+            <form method="post">
+                <td><input name="name" value="${list.name}"/></td>
+                <td><input name="secondName" value="${list.secondName}"/></td>
+                <td><input name="password" value="${list.password}"/></td>
+                <td>
+                    <input type="submit" value="up" formaction="/updateUser/${list.idUser}">
+                </td>
+            </form>
+            <form method="post">
+                <td>
+                    <input type="submit" value="del" formaction="/deleteUser/${list.idUser}">
+                </td>
+            </form>
         </tr>
     </c:forEach>
 </table>

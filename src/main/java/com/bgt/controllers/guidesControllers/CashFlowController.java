@@ -1,10 +1,10 @@
 package com.bgt.controllers.guidesControllers;
 
 
-import com.bgt.entityes.guides.CashFlowGuide;
-import com.bgt.services.CashFlowService;
-import com.bgt.services.GuidesService;
+import com.bgt.entityes.guides.CashFlow;
+import com.bgt.services.impl.CashFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,28 +15,52 @@ public class CashFlowController {
 	@Autowired
 	CashFlowService service;
 
-	@RequestMapping(value = "/cashFlowGuide", method = RequestMethod.GET)
-	public String getCashFlowGuide(Model model){
-		model.addAttribute("list",service.getAllItems());
-		return "/cashFlowGuide";
+	@RequestMapping(value = "/cashFlow", method = RequestMethod.GET)
+	public String getCashFlowGuide(Model model) {
+		model.addAttribute("list", service.getAllItems());
+		return "/cashFlow";
 	}
 
 	@RequestMapping(value = "/addCashFlowItem", method = RequestMethod.POST)
-	public String addCashFlowItem(@RequestParam ("kodItem") String kodItem,
-										@RequestParam ("item") String cashFlowItem,
-										@RequestParam (value = "level", defaultValue = "false") Boolean cashFlowItemLavel) {
-		service.addItem(new CashFlowGuide(kodItem,cashFlowItem,cashFlowItemLavel));
-		return "redirect:/cashFlowGuide";
+	public String addCashFlowItem(@RequestParam("kodItem") String kodItem,
+								  @RequestParam("item") String cashFlowItem,
+								  @RequestParam(value = "level", defaultValue = "false") boolean cashFlowItemLavel,
+								  @RequestParam("fItemName") String fItemName,
+								  Model model) {
+
+		String returnStr = "redirect:/cashFlow";
+		try {
+			CashFlow cf = new CashFlow(kodItem, cashFlowItem, cashFlowItemLavel);
+			CashFlow fCf = service.getItemByName(fItemName);
+			service.addItem(cf, fCf);
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+			model.addAttribute("error", "Введено уже существующее наименование подразделения или код");
+			model.addAttribute("errorHelp", "Вернитесь на предыдущую строку и проверьте поля КОД и НАИМЕНОВАНИЕ");
+			returnStr = "/exemption";
+		}
+
+		return returnStr;
 	}
 
-	@RequestMapping(value = "/cashFlowGuide/del/{id}", method = RequestMethod.POST)
-	public String getCashFlowGuide(@PathVariable ("id") int id){
-		service.delItemById(id);
-		return "redirect:/cashFlowGuide";
+	@RequestMapping(value = "/cashFlow/del/{id}", method = RequestMethod.POST)
+	public String getCashFlowGuide(@PathVariable("id") int id) {
+		service.deleteItemById(id);
+		return "redirect:/cashFlow";
 	}
+
+	@RequestMapping(value = "/cashFlow/up/{id}", method = RequestMethod.POST)
+	public String getCashFlowGuide(@PathVariable("id") int id,
+								   @RequestParam("fKod") String fKod,
+								   @RequestParam("name") String name,
+								   @RequestParam(value = "l", defaultValue = "false") boolean l) {
+		service.updateItem(id, name, fKod, l);
+		return "redirect:/cashFlow";
+	}
+
 
 //	@RequestMapping(value = "/cashFlowGuide/up/{id}", method = RequestMethod.POST)
-//	public String getCashFlowGuidePage(@PathVariable ("id") CashFlowGuide id,
+//	public String getCashFlowGuidePage(@PathVariable ("id") CashFlow id,
 //									   @RequestParam ("nameCf") String nameCf,
 //									   @RequestParam ("fKodCf") String fKodCf){
 //		service.updateItem(id,nameCf,fKodCf);

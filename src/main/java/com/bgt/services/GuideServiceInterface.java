@@ -1,19 +1,18 @@
 package com.bgt.services;
 
-import com.bgt.entityes.guides.CashFlowGuide;
+import com.bgt.entityes.guides.CashFlow;
 
-import java.io.Serializable;
 import java.util.List;
 
 public interface GuideServiceInterface {
 
-	void addItem(CashFlowGuide item);
+	void addItem(CashFlow item);
 
-	void delItemById(int id);
+	void deleteItemById(int id);
 
-	void updateItem(CashFlowGuide item);
+	void updateItem(CashFlow item);
 
-	List<CashFlowGuide> getAllItems();
+	List<CashFlow> getAllItems();
 
 
 }

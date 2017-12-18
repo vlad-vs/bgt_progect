@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "PROFIT_AND_LOSS_GUIDE")
-public class ProfitAndLossGuide {
+@Table(name = "PROFIT_AND_LOSS")
+public class ProfitAndLoss {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,17 +27,17 @@ public class ProfitAndLossGuide {
 	@Column(name = "PROFIT_AND_LOSS_LEVEL")
 	boolean profitAndLossLevel;
 
-	public ProfitAndLossGuide() {
+	public ProfitAndLoss() {
 	}
 
-	public ProfitAndLossGuide(String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
+	public ProfitAndLoss(String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
 		this.kodProfitAndLossItem = kodProfitAndLossItem;
 		this.profitAndLossItem = profitAndLossItem;
 		this.profitAndLossItemType = profitAndLossItemType;
 		this.profitAndLossLevel = profitAndLossLevel;
 	}
 
-	public ProfitAndLossGuide(int idPl,String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
+	public ProfitAndLoss(int idPl, String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
 		this.idPl = idPl;
 		this.kodProfitAndLossItem = kodProfitAndLossItem;
 		this.profitAndLossItem = profitAndLossItem;
@@ -87,7 +87,7 @@ public class ProfitAndLossGuide {
 
 	@Override
 	public String toString() {
-		return "ProfitAndLossGuide{" +
+		return "ProfitAndLoss{" +
 				"idPl=" + idPl +
 				", kodProfitAndLossItem='" + kodProfitAndLossItem + '\'' +
 				", profitAndLossItem='" + profitAndLossItem + '\'' +
@@ -100,7 +100,7 @@ public class ProfitAndLossGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		ProfitAndLossGuide that = (ProfitAndLossGuide) o;
+		ProfitAndLoss that = (ProfitAndLoss) o;
 		return idPl == that.idPl &&
 				profitAndLossLevel == that.profitAndLossLevel &&
 				Objects.equals(kodProfitAndLossItem, that.kodProfitAndLossItem) &&

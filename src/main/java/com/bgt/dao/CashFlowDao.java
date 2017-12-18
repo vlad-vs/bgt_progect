@@ -1,7 +1,7 @@
 package com.bgt.dao;
 
 
-import com.bgt.entityes.guides.CashFlowGuide;
+import com.bgt.entityes.guides.CashFlow;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,36 +29,68 @@ public class CashFlowDao {
 	EntityManager entityManager;
 
 	@Transactional
-	public void addUpdateItem(CashFlowGuide item) {
-//		entityManager.persist(item);
-		CashFlowGuide i = entityManager.find(CashFlowGuide.class,item.getIdCf());
-		if  (i!=null){
-			entityManager.merge(item);
-		} else {
-			entityManager.persist(item);
-		}
+	public void addItem(CashFlow item) {
+		entityManager.persist(item);
+//		CashFlow i = entityManager.find(CashFlow.class,item.getIdCf());
+//		if  (i!=null){
+//			entityManager.merge(item);
+//		} else {
+//			entityManager.persist(item);
+//		}
 	}
 
 	@Transactional
-	public List<CashFlowGuide> findAllItems() {
-		String qverySql = "SELECT ALL * FROM CASH_FLOW_GUIDE ORDER BY KOD_CASH_FLOW_ITEM";
-		Query query = entityManager.createNativeQuery(qverySql,CashFlowGuide.class);
+	public List<CashFlow> getAllItems() {
+		String qverySql = "SELECT ALL * FROM CASH_FLOW ORDER BY KOD_CASH_FLOW";
+		Query query = entityManager.createNativeQuery(qverySql, CashFlow.class);
 		List items = query.getResultList();
 		return items;
 	}
 
 	@Transactional
-	public CashFlowGuide delItemById(int id) {
-		CashFlowGuide items = entityManager.find(CashFlowGuide.class,id);
+	public CashFlow deleteItemById(int id) {
+		CashFlow items = entityManager.find(CashFlow.class, id);
 		entityManager.remove(items);
 		return items;
 	}
 
-	public CashFlowGuide getItemById(int id){
-		CashFlowGuide i = entityManager.find(CashFlowGuide.class,id);
+	@Transactional
+	public CashFlow updateItemById(int id, String name, String fKod, boolean l) {
+		CashFlow items = entityManager.find(CashFlow.class, id);
+		items.setCashFlowItem(name);
+		items.setCashFlowItemLevel(l);
+		items.setFasadKodCashFlowItem(fKod);
+		entityManager.merge(items);
+		return items;
+	}
+
+	@Transactional
+	public CashFlow getItemById(int id) {
+		CashFlow i = entityManager.find(CashFlow.class, id);
 		return i;
 	}
 
+	@Transactional
+	public CashFlow getItemByName(String name) {
+		CashFlow item = null;
+		String q = "SELECT * FROM CASH_FLOW WHERE CASH_FLOW=:name";
+		Query query = entityManager.createNativeQuery(q, CashFlow.class);
+		query.setParameter("name", name);
+		List<CashFlow> list = query.getResultList();
+		if (!list.isEmpty()) {
+			item = list.get(0);
+		}
+		return item;
+	}
+
+	@Transactional
+	public boolean findUnit(CashFlow item) {
+		boolean b = false;
+		if (!(entityManager.find(CashFlow.class, item.getIdCf()) == null)) {
+			b = true;
+		}
+		return b;
+	}
 
 //    public Object getUserFromData(long id) {
 //        Query query = entityManager.createNativeQuery("SELECT * FROM MySite.USERS WHERE USER_ID=:id",User.class);

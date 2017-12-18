@@ -1,14 +1,13 @@
 package com.bgt.entityes.guides;
 
 import com.sun.istack.internal.NotNull;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "YEARS_GUIDE")
-public class YearGuide {
+@Table(name = "YEARS")
+public class Year {
 
 	@Id
 	@Column (name = "ID_YEAR")
@@ -19,10 +18,10 @@ public class YearGuide {
 	@Column(name = "YEAR",unique = true)
 	int year;
 
-	public YearGuide() {
+	public Year() {
 	}
 
-	public YearGuide(int year) {
+	public Year(int year) {
 		this.year = year;
 	}
 
@@ -46,9 +45,9 @@ public class YearGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		YearGuide yearGuide = (YearGuide) o;
-		return idYear == yearGuide.idYear &&
-				year == yearGuide.year;
+		Year year = (Year) o;
+		return idYear == year.idYear &&
+				this.year == year.year;
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class YearGuide {
 
 	@Override
 	public String toString() {
-		return "YearGuide{" +
+		return "Year{" +
 				"idYear=" + idYear +
 				", year=" + year +
 				'}';

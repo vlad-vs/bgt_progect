@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 @Repository("userDao")
@@ -30,39 +31,51 @@ public class UsersDao {
 //        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 //    }
 
-    @PersistenceContext
-    EntityManager entityManager;
+	@PersistenceContext
+	EntityManager entityManager;
 
-    @Transactional
-    public void insertUserToData(User user) {
-        entityManager.persist(user);
-//        String sql = "INSERT INTO users (idUSER, USER_NAME, USER_SECOND_NAME, USER_PASSWORD) VALUES (:idUSER, :USER_NAME, :USER_SECOND_NAME, :USER_PASSWORD)";
-//        User b = entityManager.find(User.class,user.getIdUser());
-//
-//        if  (b!=null){
-//            entityManager.merge(user);
-//            System.out.println("updated = " + b);
-//        } else {
-//            System.out.println("created = " + b);
-//            entityManager.persist(user);
-//        }
-    }
+	@Transactional
+	public void addItem(User user) {
+		entityManager.persist(user);
+	}
 
-    @Transactional
-    public List<User> findAllUsers() {
-        String qverySql = "SELECT ALL * FROM USERS ORDER BY USER_NAME";
-        Query query = entityManager.createNativeQuery(qverySql,User.class);
-        List users = query.getResultList();
-        return users;
-    }
+	@Transactional
+	public List<User> findAllItems() {
+		String qverySql = "SELECT ALL * FROM USERS ORDER BY USER_NAME";
+		Query query = entityManager.createNativeQuery(qverySql, User.class);
+		List users = query.getResultList();
+		return users;
+	}
 
-    @Transactional
-    public User delUsersById(int idUser) {
-        User userToDel = entityManager.find(User.class,idUser);
-        entityManager.remove(userToDel);
-        return userToDel;
-    }
+	@Transactional
+	public User deleteItemById(int idUser) {
+		User userToDel = entityManager.find(User.class, idUser);
+		entityManager.remove(userToDel);
+		return userToDel;
+	}
 
+	@Transactional
+	public User updateItemById(int idUser, String name, String secondName, String password) {
+		User user = entityManager.find(User.class, idUser);
+		user.setName(name);
+		user.setPassword(password);
+		user.setSecondName(secondName);
+		entityManager.merge(user);
+		return user;
+	}
+
+	@Transactional
+	public User getItemByName(String name) {
+		User user = null;
+		String q = "SELECT * FROM USERS WHERE USER_NAME=:name";
+		Query query = entityManager.createNativeQuery(q, User.class);
+		query.setParameter("name", name);
+		List<User> users = query.getResultList();
+		if (!users.isEmpty()) {
+			user = users.get(0);
+		}
+		return user;
+	}
 //    public Object getUserFromData(long id) {
 //        Query query = entityManager.createNativeQuery("SELECT * FROM MySite.USERS WHERE USER_ID=:id",User.class);
 //        query.setParameter("id",id);

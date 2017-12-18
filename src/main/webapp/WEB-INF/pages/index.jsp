@@ -12,19 +12,19 @@
 <body>
 
 <div class="container">
-    <a href="/usersGuide">Users guide</a>
+    <a href="/users">Users guide</a>
     <br>
-    <a href="/cashFlowGuide">Cash flow guide</a>
+    <a href="/cashFlow">Cash flow guide</a>
     <br>
-    <a href="/profitAndLossGuide">Profit and loss guide</a>
+    <a href="/profitAndLoss">Profit and loss guide</a>
     <br>
-    <a href="/currencyGuide">Currency guide</a>
+    <a href="/currency">Currency guide</a>
     <br>
-    <a href="/yearGuide">Year guide</a>
+    <a href="/year">Year guide</a>
     <br>
-    <a href="/bgtGuide">Bgt Guide</a>
+    <a href="/bgt">Bgt Guide</a>
     <br>
-    <a href="/companyGuide">Company Guide</a>
+    <a href="/company">Company Guide</a>
     <br>
     <a href="/standartBgt">Standart bgt</a>
     <br>

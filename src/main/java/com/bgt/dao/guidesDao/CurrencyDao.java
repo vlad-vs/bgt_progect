@@ -1,6 +1,6 @@
 package com.bgt.dao.guidesDao;
 
-import com.bgt.entityes.guides.CurrencyGuide;
+import com.bgt.entityes.guides.Currency;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,18 +16,18 @@ public class CurrencyDao {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public void addCurrencyItemToBase(CurrencyGuide currency){
+	public void addCurrencyItemToBase(Currency currency){
 		entityManager.persist(currency);
 	}
 
-	public List<CurrencyGuide> getAllCurrencyItems() {
+	public List<Currency> getAllCurrencyItems() {
 		String sqlQuery = "SELECT ALL * FROM CURRENCY_GUIDE ORDER BY SHORT_CURRENCY_NAME";
-		Query query = entityManager.createNativeQuery(sqlQuery,CurrencyGuide.class);
+		Query query = entityManager.createNativeQuery(sqlQuery,Currency.class);
 		return query.getResultList();
 	}
 
 	public void deleteCurrencyItem(int id) {
-		CurrencyGuide currencyGuide = entityManager.find(CurrencyGuide.class, id);
+		Currency currencyGuide = entityManager.find(Currency.class, id);
 		entityManager.remove(currencyGuide);
 	}
 }

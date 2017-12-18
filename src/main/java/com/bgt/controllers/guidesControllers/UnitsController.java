@@ -1,7 +1,7 @@
 package com.bgt.controllers.guidesControllers;
 
 import com.bgt.entityes.guides.Units;
-import com.bgt.services.UnitsService;
+import com.bgt.services.impl.UnitsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import java.util.List;
 
@@ -27,11 +25,11 @@ public class UnitsController {
 
     @RequestMapping(value = "/units", method = RequestMethod.GET)
     public String getUnitPage(Model model) {
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => getUnitPage => start" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => getUnitPage => start" + "\n");
         List<Units> listUnits = service.getAllItems();
         model.addAttribute("list", listUnits);
         model.addAttribute("unitNames", listUnits);
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => getUnitPage => end" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => getUnitPage => end" + "\n");
         return "/units";
     }
 
@@ -40,11 +38,11 @@ public class UnitsController {
                           @RequestParam("UnitKod") String kod,
                           @RequestParam("UnitName") String name,
                           Model model) {
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => addUnit => start" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => addUnit => start" + "\n");
         String returnStr = "redirect:/units";
         try {
             Units unit = new Units(name, kod);
-            Units unitParent = service.getUnitByName(pName);
+            Units unitParent = service.getItemByName(pName);
             service.addItem(unit, unitParent);
 
         } catch (DataIntegrityViolationException e) {
@@ -53,15 +51,15 @@ public class UnitsController {
             model.addAttribute("errorHelp", "Вернитесь на предыдущую строку и проверьте поля КОД и НАИМЕНОВАНИЕ");
             returnStr = "/exemption";
         }
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => addUnit => end" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => addUnit => end" + "\n");
         return returnStr;
     }
 
     @RequestMapping(value = "/unit/del/{id}", method = RequestMethod.POST)
     public String deleteUnit(@PathVariable("id") int id) {
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
-        service.delItemBiId(id);
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
+        service.deleteItemById(id);
+        logger.info("com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
         return "redirect:/units";
     }
 
@@ -69,9 +67,9 @@ public class UnitsController {
     public String deleteUnit(@PathVariable("id") int id,
                              @RequestParam("Name") String name,
                              @RequestParam("fKod") String fKod) {
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
-        service.upItem(id, name, fKod);
-        logger.info("\n" + "com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
+        logger.info("com.bgt.controllers.guidesControllers => deleteUnit => start" + "\n");
+        service.updateItem(id, name, fKod);
+        logger.info("com.bgt.controllers.guidesControllers => deleteUnit => end" + "\n");
         return "redirect:/units";
     }
 

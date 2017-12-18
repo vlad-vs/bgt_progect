@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "BGT_GUIDE")
-public class BgtGuide {
+@Table(name = "BGT")
+public class Bgt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +18,10 @@ public class BgtGuide {
 	@Column(name = "BGT_NAME",unique = true)
 	String bgtName;
 
-	public BgtGuide() {
+	public Bgt() {
 	}
 
-	public BgtGuide(String kodBgt, String bgtName) {
+	public Bgt(String kodBgt, String bgtName) {
 		this.kodBgt = kodBgt;
 		this.bgtName = bgtName;
 	}
@@ -54,7 +54,7 @@ public class BgtGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		BgtGuide bgtGuide = (BgtGuide) o;
+		Bgt bgtGuide = (Bgt) o;
 		return idBgt == bgtGuide.idBgt &&
 				Objects.equals(kodBgt, bgtGuide.kodBgt) &&
 				Objects.equals(bgtName, bgtGuide.bgtName);
@@ -68,7 +68,7 @@ public class BgtGuide {
 
 	@Override
 	public String toString() {
-		return "BgtGuide{" +
+		return "Bgt{" +
 				"idBgt=" + idBgt +
 				", kodBgt='" + kodBgt + '\'' +
 				", bgtName='" + bgtName + '\'' +

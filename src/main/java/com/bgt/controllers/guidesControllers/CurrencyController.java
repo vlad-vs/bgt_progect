@@ -1,6 +1,6 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.entityes.guides.CurrencyGuide;
+import com.bgt.entityes.guides.Currency;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class CurrencyController {
 	@RequestMapping(value = "/addCurrencyGuideItem",method = RequestMethod.POST)
 	public String getCurrencyGuide(@RequestParam("shortItem") String shortName,
 									@RequestParam ("fullItem")  String fullName){
-		service.addCurrencyItem(new CurrencyGuide(shortName,fullName));
+		service.addCurrencyItem(new Currency(shortName,fullName));
 		return "redirect:/currencyGuide";
 	}
 

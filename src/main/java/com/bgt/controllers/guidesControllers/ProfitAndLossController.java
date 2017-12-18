@@ -1,6 +1,6 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.entityes.guides.ProfitAndLossGuide;
+import com.bgt.entityes.guides.ProfitAndLoss;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class ProfitAndLossController {
 
 	@RequestMapping(value = "/profitAndLossGuide", method = RequestMethod.GET)
 	public String profitAndLossGuide(Model model){
-		List <ProfitAndLossGuide> list = service.getAllPlItems();
+		List <ProfitAndLoss> list = service.getAllPlItems();
 		model.addAttribute("listPlItems", list);
 
 		return "/profitAndLossGuide";
@@ -38,7 +38,7 @@ public class ProfitAndLossController {
 									   @RequestParam ("item") String item,
 									   @RequestParam ("type") String type,
 									   @RequestParam (value = "level", defaultValue = "false") Boolean level){
-		service.addPlItem(new ProfitAndLossGuide(kod,item,type,level));
+		service.addPlItem(new ProfitAndLoss(kod,item,type,level));
 		return "redirect:/profitAndLossGuide";
 	}
 
@@ -48,7 +48,7 @@ public class ProfitAndLossController {
 									   @PathVariable String item,
 									   @PathVariable String type,
 									   @PathVariable boolean level){
-		service.updatePlItem(new ProfitAndLossGuide(id,kod,item,type,level));
+		service.updatePlItem(new ProfitAndLoss(id,kod,item,type,level));
 		return "redirect:/profitAndLossGuide";
 	}
 }

@@ -1,7 +1,6 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.entityes.guides.CompaniesGuide;
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Company;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.persistence.Column;
 
 @Controller
 public class CompanyController {
@@ -28,7 +25,7 @@ public class CompanyController {
 	@RequestMapping(value = "/addCompanyGuideItem",method = RequestMethod.POST)
 	public String addCompanyGuideItem(@RequestParam("kodItem") String kodItem,
 								   @RequestParam ("item") String item) {
-		service.addCompanyItem(new CompaniesGuide(kodItem,item));
+		service.addCompanyItem(new Company(kodItem,item));
 
 		return "redirect:/companyGuide";
 	}

@@ -1,7 +1,6 @@
 package com.bgt.dao;
 
-import com.bgt.entityes.guides.BgtGuide;
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Bgt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,25 +11,25 @@ import java.util.List;
 
 @Transactional
 @Repository("bgtGuideDao")
-public class BgtGuideDao {
+public class BgtDao {
 
 	@PersistenceContext
 	EntityManager entityManager;
 
 	@Transactional
-	public List<BgtGuide> getAllBgtItems(){
+	public List<Bgt> getAllBgtItems(){
 		String sqlQuery = "SELECT ALL * FROM BGT_GUIDE ORDER BY KOD_BGT";
-		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, BgtGuide.class);
+		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, Bgt.class);
 		return nativeQuery.getResultList();
 	}
 	@Transactional
-	public void insertBgtItem(BgtGuide bgtGuide){
+	public void insertBgtItem(Bgt bgtGuide){
 		entityManager.persist(bgtGuide);
 	}
 
 	@Transactional
 	public void delBgtById(int id){
-		BgtGuide bgtGuide = entityManager.find(BgtGuide.class, id);
+		Bgt bgtGuide = entityManager.find(Bgt.class, id);
 		entityManager.remove(bgtGuide);
 	}
 

@@ -1,7 +1,6 @@
 package com.bgt.dao;
 
-import com.bgt.entityes.guides.CompaniesGuide;
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Company;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,19 +17,19 @@ public class CompanyDao {
 	EntityManager entityManager;
 
 	@Transactional
-	public List<CompaniesGuide> getAllCompanyesItems(){
+	public List<Company> getAllCompanyesItems(){
 		String sqlQuery = "SELECT ALL * FROM COMPANYES_GUIDE ORDER BY KOD_COMPANY";
-		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, CompaniesGuide.class);
+		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, Company.class);
 		return nativeQuery.getResultList();
 	}
 	@Transactional
-	public void insertCompanyItem(CompaniesGuide item){
+	public void insertCompanyItem(Company item){
 		entityManager.persist(item);
 	}
 
 	@Transactional
 	public void delCompanyItemById(int id){
-		CompaniesGuide item = entityManager.find(CompaniesGuide.class, id);
+		Company item = entityManager.find(Company.class, id);
 		entityManager.remove(item);
 	}
 

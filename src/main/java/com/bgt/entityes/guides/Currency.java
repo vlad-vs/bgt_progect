@@ -1,14 +1,13 @@
 package com.bgt.entityes.guides;
 
 import com.sun.istack.internal.NotNull;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "CURRENCY_GUIDE")
-public class CurrencyGuide {
+@Table(name = "CURRENCY")
+public class Currency {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -22,11 +21,11 @@ public class CurrencyGuide {
 	@Column(name = "CURRENCY_NAME")
 	String currencyName;
 
-	public CurrencyGuide() {
+	public Currency() {
 
 	}
 
-	public CurrencyGuide(String shortCurrencyName, String currencyName) {
+	public Currency(String shortCurrencyName, String currencyName) {
 		this.shortCurrencyName = shortCurrencyName;
 		this.currencyName = currencyName;
 	}
@@ -59,7 +58,7 @@ public class CurrencyGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		CurrencyGuide that = (CurrencyGuide) o;
+		Currency that = (Currency) o;
 		return idCurrency == that.idCurrency &&
 				Objects.equals(shortCurrencyName, that.shortCurrencyName) &&
 				Objects.equals(currencyName, that.currencyName);
@@ -73,7 +72,7 @@ public class CurrencyGuide {
 
 	@Override
 	public String toString() {
-		return "CurrencyGuide{" +
+		return "Currency{" +
 				"idCurrency=" + idCurrency +
 				", shortCurrencyName='" + shortCurrencyName + '\'' +
 				", currencyName='" + currencyName + '\'' +

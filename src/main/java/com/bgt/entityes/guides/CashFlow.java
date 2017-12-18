@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "CASH_FLOW_GUIDE")
-public class CashFlowGuide {
+@Table(name = "CASH_FLOW")
+public class CashFlow {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -15,26 +15,29 @@ public class CashFlowGuide {
 	@Column(name = "ID_CF")
 	int idCf;
 
-	@Column(name = "KOD_CASH_FLOW_ITEM",unique = true)
+	@Column(name = "KOD_CASH_FLOW",unique = true)
 	String kodCashFlowItem;
 
-	@Column(name = "CASH_FLOW_ITEM")
+	@Column(name = "FASAD_KOD_CASH_FLOW",unique = true)
+	String fasadKodCashFlowItem;
+
+	@Column(name = "CASH_FLOW")
 	String cashFlowItem;
 
-	@Column(name = "CASH_FLOW_ITEM_LEVEL")
+	@Column(name = "CASH_FLOW_LEVEL")
 	boolean cashFlowItemLevel;
 
-	public CashFlowGuide() {
+	public CashFlow() {
 	}
 
-	public CashFlowGuide(String kodCashFlowItem, String cashFlowItem, boolean cashFlowItemLevel) {
+	public CashFlow(String kodCashFlowItem, String fasadKodCashFlowItem, String cashFlowItem, boolean cashFlowItemLevel) {
 		this.kodCashFlowItem = kodCashFlowItem;
+		this.fasadKodCashFlowItem = fasadKodCashFlowItem;
 		this.cashFlowItem = cashFlowItem;
 		this.cashFlowItemLevel = cashFlowItemLevel;
 	}
 
-	public CashFlowGuide(int idCf, String kodCashFlowItem, String cashFlowItem, boolean cashFlowItemLevel) {
-		this.idCf = idCf;
+	public CashFlow(String kodCashFlowItem, String cashFlowItem, boolean cashFlowItemLevel) {
 		this.kodCashFlowItem = kodCashFlowItem;
 		this.cashFlowItem = cashFlowItem;
 		this.cashFlowItemLevel = cashFlowItemLevel;
@@ -54,6 +57,14 @@ public class CashFlowGuide {
 
 	public void setKodCashFlowItem(String kodCashFlowItem) {
 		this.kodCashFlowItem = kodCashFlowItem;
+	}
+
+	public String getFasadKodCashFlowItem() {
+		return fasadKodCashFlowItem;
+	}
+
+	public void setFasadKodCashFlowItem(String fasadKodCashFlowItem) {
+		this.fasadKodCashFlowItem = fasadKodCashFlowItem;
 	}
 
 	public String getCashFlowItem() {
@@ -76,24 +87,26 @@ public class CashFlowGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		CashFlowGuide that = (CashFlowGuide) o;
-		return idCf == that.idCf &&
-				cashFlowItemLevel == that.cashFlowItemLevel &&
-				Objects.equals(kodCashFlowItem, that.kodCashFlowItem) &&
-				Objects.equals(cashFlowItem, that.cashFlowItem);
+		CashFlow cashFlow = (CashFlow) o;
+		return idCf == cashFlow.idCf &&
+				cashFlowItemLevel == cashFlow.cashFlowItemLevel &&
+				Objects.equals(kodCashFlowItem, cashFlow.kodCashFlowItem) &&
+				Objects.equals(fasadKodCashFlowItem, cashFlow.fasadKodCashFlowItem) &&
+				Objects.equals(cashFlowItem, cashFlow.cashFlowItem);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(idCf, kodCashFlowItem, cashFlowItem, cashFlowItemLevel);
+		return Objects.hash(idCf, kodCashFlowItem, fasadKodCashFlowItem, cashFlowItem, cashFlowItemLevel);
 	}
 
 	@Override
 	public String toString() {
-		return "CashFlowGuide{" +
+		return "CashFlow{" +
 				"idCf=" + idCf +
 				", kodCashFlowItem='" + kodCashFlowItem + '\'' +
+				", fasadKodCashFlowItem='" + fasadKodCashFlowItem + '\'' +
 				", cashFlowItem='" + cashFlowItem + '\'' +
 				", cashFlowItemLevel=" + cashFlowItemLevel +
 				'}';

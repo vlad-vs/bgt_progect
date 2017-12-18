@@ -39,7 +39,7 @@
             <td>${list.year}</td>
 
             <td>
-                    <input type="submit" value="del" formaction="/yearGuide/del/${list.idYear}"/>
+                    <input type="submit" value="del" formaction="/year/del/${list.idYear}"/>
             </td>
 
             <td>

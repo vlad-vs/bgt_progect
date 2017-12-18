@@ -11,7 +11,7 @@ public class MyBeansLogger implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
 
-        System.err.println(" => bean name:" + s + "\n" + " /// " + o);
+        System.err.println(" => bean name:" + s + " /// " + o);
 
         return o;
     }

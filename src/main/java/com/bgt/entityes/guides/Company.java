@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "COMPANYES_GUIDE")
-public class CompaniesGuide {
+@Table(name = "COMPANY")
+public class Company {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,12 +21,12 @@ public class CompaniesGuide {
 	@Column(name = "NAME_COMPANY",unique = true)
 	String nameCompany;
 
-	public CompaniesGuide(String kodCompany, String nameCompany) {
+	public Company(String kodCompany, String nameCompany) {
 		this.kodCompany = kodCompany;
 		this.nameCompany = nameCompany;
 	}
 
-	public CompaniesGuide() {
+	public Company() {
 	}
 
 	public int getIdCompany() {
@@ -57,7 +57,7 @@ public class CompaniesGuide {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		CompaniesGuide that = (CompaniesGuide) o;
+		Company that = (Company) o;
 		return idCompany == that.idCompany &&
 				Objects.equals(kodCompany, that.kodCompany) &&
 				Objects.equals(nameCompany, that.nameCompany);
@@ -71,7 +71,7 @@ public class CompaniesGuide {
 
 	@Override
 	public String toString() {
-		return "CompaniesGuide{" +
+		return "Company{" +
 				"idCompany=" + idCompany +
 				", kodCompany='" + kodCompany + '\'' +
 				", nameCompany='" + nameCompany + '\'' +

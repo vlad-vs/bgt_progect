@@ -12,21 +12,21 @@
 </head>
 <body>
 <a href="/">Back</a>
-<h1>Справочник бюджетируемых компаний</h1>
+<h1>Справочник бюджетов</h1>
 
 <form class="sigh-in-form" method="post">
 
     <div class="form-group">
-        <label for="kodItem">Kod</label>
-        <input title="Код" type="text" class="form-input-item" id="kodItem" name="kodItem" placeholder="">
+        <label for="kodItemBgt">Kod</label>
+        <input type="text" class="form-input-item" id="kodItemBgt" name="kodItemBgt" placeholder="">
     </div>
 
     <div class="form-group">
-        <label for="item">Company name</label>
-        <input title="Код" type="text" class="form-input-item" id="item" name="item" placeholder="">
+        <label for="bgtName">Name</label>
+        <input type="text" class="form-input-item" id="bgtName" name="bgtName" placeholder="">
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Add" formaction="/addCompanyGuideItem"/>
+    <input type="submit" class="btn btn-primary" value="Add" formaction="/addBgtGuideItem"/>
 
 </form>
 
@@ -34,7 +34,7 @@
 <table class="table">
     <tr class="table-head">
         <td>Kod</td>
-        <td>Item</td>
+        <td>Name</td>
     </tr>
 
     <form class="" method="post">
@@ -42,17 +42,17 @@
     <c:forEach var="list" items="${list}">
         <tr class="table-light">
 
-            <td>${list.kodCompany}</td>
+            <td>${list.kodBgt}</td>
 
-            <td>${list.nameCompany}</td>
+            <td>${list.bgtName}</td>
 
             <td>
-                    <input type="submit" value="del" formaction="/yearGuide/del/${list.idCompany}"/>
+                    <input type="submit" value="del" formaction="/year/del/${list.idBgt}"/>
             </td>
 
-            <%--<td>--%>
-                    <%--<input type="submit" value="up" formaction="/currencyGuide/update/${list.id}:${list.year}"/>--%>
-            <%--</td>--%>
+            <td>
+                    <input type="submit" value="up" formaction="/currencyGuide/update/${list.idBgt}:${list.kodBgt}:${list.bgtName}"/>
+            </td>
         </tr>
     </c:forEach>
     </form>

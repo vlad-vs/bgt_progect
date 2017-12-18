@@ -1,6 +1,6 @@
 package com.bgt.dao.guidesDao;
 
-import com.bgt.entityes.guides.YearGuide;
+import com.bgt.entityes.guides.Year;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,21 +16,21 @@ public class YearDao {
 	EntityManager entityManager;
 
 	@Transactional
-	public List<YearGuide> getAllYearItems(){
+	public List<Year> getAllYearItems(){
 		String sqlQuery = "SELECT ALL * FROM YEARS_GUIDE ORDER BY YEAR";
-		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, YearGuide.class);
+		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, Year.class);
 		return nativeQuery.getResultList();
 	}
 
 	@Transactional
-	public void insertYearItem(YearGuide yearGuide){
-		entityManager.persist(yearGuide);
+	public void insertYearItem(Year year){
+		entityManager.persist(year);
 	}
 
 	@Transactional
 	public void delYearItemById(int id){
-		YearGuide yearGuide = entityManager.find(YearGuide.class, id);
-		entityManager.remove(yearGuide);
+		Year year = entityManager.find(Year.class, id);
+		entityManager.remove(year);
 	}
 
 }
