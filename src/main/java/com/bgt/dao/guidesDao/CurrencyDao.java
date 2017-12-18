@@ -1,4 +1,4 @@
-package com.bgt.dao;
+package com.bgt.dao.guidesDao;
 
 import com.bgt.entityes.guides.CurrencyGuide;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Transactional
 @Repository("currencuGuideDao")
-public class CurrencuGuideDao {
+public class CurrencyDao {
 
 	@PersistenceContext
 	EntityManager entityManager;

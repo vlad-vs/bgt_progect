@@ -1,6 +1,8 @@
 package com.bgt.services;
 
 import com.bgt.dao.*;
+import com.bgt.dao.guidesDao.CurrencyDao;
+import com.bgt.dao.guidesDao.YearDao;
 import com.bgt.entityes.User;
 import com.bgt.entityes.guides.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,33 +15,28 @@ public class GuidesService {
 
 
 	@Autowired
-	ProfitAndLossGuideDao plDao;
+	ProfitAndLossDao plDao;
 
 	@Autowired
-	UsersGideDao userDao;
+	UsersDao userDao;
 
 	@Autowired
-	CurrencuGuideDao currencyDao;
+	CurrencyDao currencyDao;
 
 	@Autowired
-	YearGuideDao yearDao;
+	YearDao yearDao;
 
 	@Autowired
 	BgtGuideDao bgtDao;
 
 	@Autowired
-	CompanyesGuideDao companyDao;
-
-	@Autowired
-	UnitGuideDao unitDao;
-
-	@Autowired
-	Cfo1GuideDao cfo1Dao;
+    CompanyDao companyDao;
 
 
 	public void addPlItem(ProfitAndLossGuide item){
 		plDao.insertProfitAndLossItem(item);
 	}
+
 	public void delPlItem(int id){
 		plDao.deleteProfitAndLossItemById(id);
 	}
@@ -102,7 +99,6 @@ public class GuidesService {
 		bgtDao.delBgtById(id);
 	}
 	public void updateBgtItem(BgtGuide item){
-//		bgtDao.
 	}
 
 	public List<BgtGuide> getAllBtgItems(){
@@ -127,41 +123,4 @@ public class GuidesService {
 		return companyDao.getAllCompanyesItems();
 	}
 
-	public void addUnitItem(UnitsGuide item){
-		unitDao.insertUnitItem(item);
-	}
-
-	public void delUnitItem(int id){
-		unitDao.delUnitItemById(id);
-	}
-
-	public Object getUnitByKod(String kod){
-		Object unitsGuide = unitDao.getUnitItemByKod(kod);
-		return unitsGuide;
-	}
-
-	public void updateUnitItem(UnitsGuide item){
-//		bgtDao.
-	}
-
-	public List<UnitsGuide> getAllUnitItems(){
-		return unitDao.getAllUnitItems();
-	}
-
-
-	public void addCfo1Item(Cfo1Guide item){
-		cfo1Dao.insertCfo1Item(item);
-	}
-
-	public void delCfo1Item(int id){
-		cfo1Dao.delCfo1ById(id);
-	}
-
-	public void updateCfo1Item(Cfo1Guide item){
-//		bgtDao.
-	}
-
-	public List<Cfo1Guide> getAllCfo1Items(){
-		return cfo1Dao.getAllCfo1Items();
-	}
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Transactional
 @Repository("cashFlowGuideDao")
-public class CashFlowGuideDao {
+public class CashFlowDao {
 
 
 //    private NamedParameterJdbcTemplate jdbcTemplate;

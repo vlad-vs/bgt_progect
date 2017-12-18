@@ -12,7 +12,7 @@ import java.util.List;
 
 @Transactional
 @Repository("companyesGuideDao")
-public class CompanyesGuideDao {
+public class CompanyDao {
 
 	@PersistenceContext
 	EntityManager entityManager;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.Column;
 
 @Controller
-public class CompanyGuideController {
+public class CompanyController {
 
 	@Autowired
 	GuidesService service;

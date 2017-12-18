@@ -1,6 +1,5 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.dao.ProfitAndLossGuideDao;
 import com.bgt.entityes.guides.ProfitAndLossGuide;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class ProfitAndLossGuideController {
+public class ProfitAndLossController {
 
 
 	@Autowired

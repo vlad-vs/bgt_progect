@@ -1,6 +1,5 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.dao.YearGuideDao;
 import com.bgt.entityes.guides.YearGuide;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class YearGuideController {
+public class YearController {
 
 	@Autowired
 	GuidesService service;

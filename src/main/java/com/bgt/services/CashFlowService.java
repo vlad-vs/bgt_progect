@@ -1,6 +1,6 @@
 package com.bgt.services;
 
-import com.bgt.dao.CashFlowGuideDao;
+import com.bgt.dao.CashFlowDao;
 import com.bgt.entityes.guides.CashFlowGuide;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 public class CashFlowService implements GuideServiceInterface {
 
 	@Autowired
-	CashFlowGuideDao cfDao;
+	CashFlowDao cfDao;
 
 
 	@Override
@@ -27,7 +27,6 @@ public class CashFlowService implements GuideServiceInterface {
 	@Override
 	public void updateItem(CashFlowGuide item) {
 		cfDao.addUpdateItem(item);
-//		cfDao.(id);
 	}
 
 	@Override

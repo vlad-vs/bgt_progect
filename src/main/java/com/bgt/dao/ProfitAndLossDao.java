@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository("profitAndLossGuideDao")
 @Transactional
-public class ProfitAndLossGuideDao {
+public class ProfitAndLossDao {
 
 	@PersistenceContext
 	EntityManager entityManager;

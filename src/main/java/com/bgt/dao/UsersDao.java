@@ -18,7 +18,7 @@ import java.util.List;
 
 @Transactional
 @Repository("userDao")
-public class UsersGideDao {
+public class UsersDao {
 
 //    private NamedParameterJdbcTemplate jdbcTemplate;
 //

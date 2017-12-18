@@ -10,13 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class CashFlowGuideController {
+public class CashFlowController {
 
 	@Autowired
 	CashFlowService service;
 
 	@RequestMapping(value = "/cashFlowGuide", method = RequestMethod.GET)
-	public String getCashFlowGuidePage(Model model){
+	public String getCashFlowGuide(Model model){
 		model.addAttribute("list",service.getAllItems());
 		return "/cashFlowGuide";
 	}
@@ -29,26 +29,17 @@ public class CashFlowGuideController {
 		return "redirect:/cashFlowGuide";
 	}
 
-	@RequestMapping(value = "/cashFlowGuide/del/{ID_CF}", method = RequestMethod.POST)
-	public String getCashFlowGuidePage(@PathVariable int ID_CF){
-		service.delItemById(ID_CF);
+	@RequestMapping(value = "/cashFlowGuide/del/{id}", method = RequestMethod.POST)
+	public String getCashFlowGuide(@PathVariable ("id") int id){
+		service.delItemById(id);
 		return "redirect:/cashFlowGuide";
 	}
 
-
-
-//	@RequestMapping(value = "/cashFlowGuide/up/{ID_CF}", method = RequestMethod.GET)
-//	public String getCashFlowGuidePage(@PathVariable int ID_CF,
-//									   @RequestParam ("kodItemNew") String kodItem,
-//									   @RequestParam ("itemNew") String cashFlowItem,
-//									   @RequestParam (value = "levelNew") boolean cashFlowItemLavel){
-//		service.updateItem(new CashFlowGuide(ID_CF,kodItem,cashFlowItem,cashFlowItemLavel));
+//	@RequestMapping(value = "/cashFlowGuide/up/{id}", method = RequestMethod.POST)
+//	public String getCashFlowGuidePage(@PathVariable ("id") CashFlowGuide id,
+//									   @RequestParam ("nameCf") String nameCf,
+//									   @RequestParam ("fKodCf") String fKodCf){
+//		service.updateItem(id,nameCf,fKodCf);
 //		return "redirect:/cashFlowGuide";
 //	}
-
-	@RequestMapping(value = "/cashFlowGuide/up/{ID_CF}", method = RequestMethod.POST)
-	public String getCashFlowGuidePage(@ModelAttribute ("cfModel") CashFlowGuide cfModel){
-		service.updateItem(cfModel);
-		return "redirect:/cashFlowGuide";
-	}
 }

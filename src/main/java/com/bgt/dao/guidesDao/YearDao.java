@@ -1,4 +1,4 @@
-package com.bgt.dao;
+package com.bgt.dao.guidesDao;
 
 import com.bgt.entityes.guides.YearGuide;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 @Transactional
 @Repository("yearGuideDao")
-public class YearGuideDao {
+public class YearDao {
 
 	@PersistenceContext
 	EntityManager entityManager;

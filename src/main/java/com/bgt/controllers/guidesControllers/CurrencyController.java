@@ -1,6 +1,5 @@
 package com.bgt.controllers.guidesControllers;
 
-import com.bgt.dao.CurrencuGuideDao;
 import com.bgt.entityes.guides.CurrencyGuide;
 import com.bgt.services.GuidesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CurrencyGuideController {
+public class CurrencyController {
 
 	@Autowired
 	GuidesService service;
