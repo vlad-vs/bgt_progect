@@ -53,8 +53,8 @@ public class CashFlowController {
 	public String getCashFlowGuide(@PathVariable("id") int id,
 								   @RequestParam("fKod") String fKod,
 								   @RequestParam("name") String name,
-								   @RequestParam(value = "l", defaultValue = "false") boolean l) {
-		service.updateItem(id, name, fKod, l);
+								   @RequestParam(value = "level") boolean level) {
+		service.updateItem(id, name, fKod, level);
 		return "redirect:/cashFlow";
 	}
 

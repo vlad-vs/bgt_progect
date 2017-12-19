@@ -28,8 +28,8 @@ public class CashFlowService implements CashFlowServiceInterface {
 	}
 
 	@Override
-	public void updateItem(int id, String name, String fKod, boolean l) {
-		dao.updateItemById(id, name, fKod, l);
+	public void updateItem(int id, String name, String fKod, boolean level) {
+		dao.updateItemById(id, name, fKod, level);
 	}
 
 	@Override

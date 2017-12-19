@@ -12,16 +12,16 @@ public class CashFlow {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@NotNull
-	@Column(name = "ID_CF")
+	@Column(name = "ID_CF",unique = true)
 	int idCf;
 
-	@Column(name = "KOD_CASH_FLOW",unique = true)
+	@Column(name = "KOD_CASH_FLOW")
 	String kodCashFlowItem;
 
 	@Column(name = "FASAD_KOD_CASH_FLOW",unique = true)
 	String fasadKodCashFlowItem;
 
-	@Column(name = "CASH_FLOW")
+	@Column(name = "CASH_FLOW",unique = true)
 	String cashFlowItem;
 
 	@Column(name = "CASH_FLOW_LEVEL")

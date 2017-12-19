@@ -55,10 +55,10 @@ public class CashFlowDao {
 	}
 
 	@Transactional
-	public CashFlow updateItemById(int id, String name, String fKod, boolean l) {
+	public CashFlow updateItemById(int id, String name, String fKod, boolean level) {
 		CashFlow items = entityManager.find(CashFlow.class, id);
 		items.setCashFlowItem(name);
-		items.setCashFlowItemLevel(l);
+		items.setCashFlowItemLevel(level);
 		items.setFasadKodCashFlowItem(fKod);
 		entityManager.merge(items);
 		return items;

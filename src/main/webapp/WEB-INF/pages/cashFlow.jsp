@@ -9,13 +9,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/cash.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/cashFlow.css">
 </head>
 <body>
+<header class="header">
+    <a href="/">Back</a>
 
-<a href="/">Back</a>
+    <h1>Справочник статей движения денежных средств</h1>
+</header>
 
-<h1>Справочник статей движения денежных средств</h1>
 
 <form action="/addCashFlowItem" method="post">
 
@@ -33,21 +35,21 @@
     </div>
 
     <div class="form-group-cfItems">
-        <label for="kodItem">Kod</label>
+        <label for="kodItem">Код:</label>
         <input type="text" class="form-input-id" id="kodItem" name="kodItem">
     </div>
 
     <div class="form-group-cfItems">
-        <label for="item">Item</label>
+        <label for="item">Сатья:</label>
         <input type="text" class="form-input-item" id="item" name="item" placeholder="">
     </div>
 
     <div class="form-group-cfItems">
-        <label class="form-check-label" for="level"> Down level </label>
+        <label class="form-check-label" for="level">Нижний уровень:</label>
         <input type="checkbox" class="form-check-input" id="level" name="level">
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Save"/>
+    <input type="submit" class="btnSaveItem" value="Save"/>
 
     <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delCashFlowItem/"/>--%>
 
@@ -55,27 +57,27 @@
 
 <table class="table">
     <tr class="table-head">
-        <td>Kod</td>
-        <td>Item</td>
-        <td>Lavel (Down)</td>
+        <td>Код</td>
+        <td>Статья</td>
+        <td>Нижний уровень</td>
     </tr>
     <c:forEach var="list" items="${list}">
         <tr class="table-light">
             <form method="post">
-                <td><input type="text" class="form-input-id" name="fKod"
+                <td><input type="text" class="form-input-table" name="fKod"
                            value="${list.fasadKodCashFlowItem}"/></td>
-                <td><input type="text" class="form-input-item" name="name"
+                <td><input type="text" class="form-input-table" name="name"
                            value="${list.cashFlowItem}"/></td>
-                <td><input type="checkbox" class="form-check-input" name="l"
+                <td><input type="text" class="form-check-table" name="level"
                            value="${list.cashFlowItemLevel}"/></td>
                 <td>
-                    <input type="submit" value="up" formaction="/cashFlow/up/${list.idCf}"/>
+                    <input class="btnUpItem" type="submit" value="up" formaction="/cashFlow/up/${list.idCf}"/>
                 </td>
             </form>
 
             <form method="post">
                 <td>
-                    <input type="submit" value="del" formaction="/cashFlow/del/${list.idCf}/"/>
+                    <input class="btnDelItem" type="submit" value="del" formaction="/cashFlow/del/${list.idCf}/"/>
                 </td>
             </form>
 
