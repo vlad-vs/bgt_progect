@@ -17,7 +17,6 @@ public class StandartBgtController {
 	public String getStandartBgtPage(Model m){
 		m.addAttribute("listYears",service.getAllYearItems());
 		m.addAttribute("bgtNames",service.getAllBtgItems());
-		m.addAttribute("companyNames",service.getAllCompanyItems());
 		return "/standartBgt";
 	}
 

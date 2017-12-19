@@ -27,8 +27,6 @@ public class GuidesService {
 	@Autowired
 	BgtDao bgtDao;
 
-	@Autowired
-    CompanyDao companyDao;
 
 
 	public void addPlItem(ProfitAndLoss item){
@@ -88,24 +86,6 @@ public class GuidesService {
 
 	public List<Bgt> getAllBtgItems(){
 		return bgtDao.getAllBgtItems();
-	}
-
-
-
-	public void addCompanyItem(Company item){
-		companyDao.insertCompanyItem(item);
-	}
-
-	public void delCompanyItem(int id){
-		companyDao.delCompanyItemById(id);
-	}
-
-	public void updateCimpanyItem(Year item){
-//		bgtDao.
-	}
-
-	public List<Company> getAllCompanyItems(){
-		return companyDao.getAllCompanyesItems();
 	}
 
 }
