@@ -14,6 +14,9 @@ public class OperationToPlAndCfReport {
     @Column(name = "KOD_OPERATION", unique = true)
     private String kodOperationItem;
 
+    @Column(name = "FASAD_KOD_OPERATION", unique = true)
+    private String fasadKodOperationItem;
+
     @Column(name = "ITEM_OPERATION", unique = true)
     private String operationItem;
 
@@ -24,6 +27,14 @@ public class OperationToPlAndCfReport {
     private int idCf;
 
     public OperationToPlAndCfReport() {
+    }
+
+    public OperationToPlAndCfReport(String kodOperationItem, String fasadKodOperationItem, String operationItem, int idPl, int idCf) {
+        this.kodOperationItem = kodOperationItem;
+        this.fasadKodOperationItem = fasadKodOperationItem;
+        this.operationItem = operationItem;
+        this.idPl = idPl;
+        this.idCf = idCf;
     }
 
     public OperationToPlAndCfReport(String kodOperationItem, String operationItem, int idPl, int idCf) {
@@ -71,6 +82,14 @@ public class OperationToPlAndCfReport {
 
     public void setIdCf(int idCf) {
         this.idCf = idCf;
+    }
+
+    public String getFasadKodOperationItem() {
+        return fasadKodOperationItem;
+    }
+
+    public void setFasadKodOperationItem(String fasadKodOperationItem) {
+        this.fasadKodOperationItem = fasadKodOperationItem;
     }
 
     @Override

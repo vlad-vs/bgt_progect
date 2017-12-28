@@ -23,7 +23,7 @@ public class BalanceDao {
 
     @Transactional
     public List<Balance> getAllItems() {
-        String qverySql = "SELECT ALL * FROM balance ORDER BY KOD_BALANCE";
+        String qverySql = "SELECT ALL * FROM BALANCE ORDER BY KOD_BALANCE";
         Query query = entityManager.createNativeQuery(qverySql, Balance.class);
         List items = query.getResultList();
         return items;
@@ -52,7 +52,7 @@ public class BalanceDao {
     @Transactional
     public Balance getItemByName(String name) {
         Balance item = null;
-        String q = "SELECT * FROM balance WHERE ITEM_BALANCE=:name";
+        String q = "SELECT * FROM BALANCE WHERE ITEM_BALANCE=:name";
         Query query = entityManager.createNativeQuery(q, Balance.class);
         query.setParameter("name", name);
         List<Balance> list = query.getResultList();
