@@ -16,6 +16,8 @@
     <br>
     <a href="/cashFlow">Cash flow guide</a>
     <br>
+    <a href="/balance">Balance guide</a>
+    <br>
     <a href="/profitAndLoss">Profit and loss guide</a>
     <br>
     <a href="/currency">Currency guide</a>

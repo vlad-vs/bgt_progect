@@ -13,22 +13,22 @@ public class ProfitAndLoss implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PL", unique = true, nullable = false)
-    int idPl;
+    private int idPl;
 
     @Column(name = "KOD_ITEM")
-    String kodItem;
+    private String kodItem;
 
     @Column(name = "FASAD_KOD__ITEM", unique = true)
-    String fasadKodItem;
+    private String fasadKodItem;
 
     @Column(name = "NAME_ITEM", unique = true)
-    String nameItem;
+    private String nameItem;
 
     @Column(name = "TYPE_ITEM")
-    String typeItem;
+    private String typeItem;
 
     @Column(name = "LEVEL_ITEM")
-    boolean levelItem;
+    private boolean levelItem;
 
     public ProfitAndLoss() {
     }

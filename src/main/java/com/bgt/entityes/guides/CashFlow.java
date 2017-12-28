@@ -13,19 +13,19 @@ public class CashFlow {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@NotNull
 	@Column(name = "ID_CF",unique = true)
-	int idCf;
+	private int idCf;
 
 	@Column(name = "KOD_CASH_FLOW")
-	String kodCashFlowItem;
+	private String kodCashFlowItem;
 
 	@Column(name = "FASAD_KOD_CASH_FLOW",unique = true)
-	String fasadKodCashFlowItem;
+	private String fasadKodCashFlowItem;
 
 	@Column(name = "CASH_FLOW",unique = true)
-	String cashFlowItem;
+	private String cashFlowItem;
 
 	@Column(name = "CASH_FLOW_LEVEL")
-	boolean cashFlowItemLevel;
+	private boolean cashFlowItemLevel;
 
 	public CashFlow() {
 	}

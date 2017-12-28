@@ -17,7 +17,6 @@
 <header class="header">
 
     <form class="sigh-in-form" method="post">
-
         <div class="form-group-plItems">
             <label for="ParentName">Группа:</label>
             <input type="text" autocomplete="off" name="fItemName" class="form-input-item" id="ParentName"
@@ -53,9 +52,7 @@
         </div>
 
         <input type="submit" class="btnSaveItem" value="Add" formaction="/addProfitAndLossItem"/>
-
-        <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delCashFlowItem"/>--%>
-
+        
     </form>
 
 

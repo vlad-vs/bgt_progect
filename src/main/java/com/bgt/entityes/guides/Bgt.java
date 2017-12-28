@@ -10,13 +10,13 @@ public class Bgt {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_BGT")
-	int idBgt;
+	private int idBgt;
 
 	@Column(name = "KOD_BGT",unique = true)
-	String kodBgt;
+	private String kodBgt;
 
 	@Column(name = "BGT_NAME",unique = true)
-	String bgtName;
+	private String bgtName;
 
 	public Bgt() {
 	}
