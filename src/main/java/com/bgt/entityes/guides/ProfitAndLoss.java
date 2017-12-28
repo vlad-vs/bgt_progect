@@ -3,114 +3,136 @@ package com.bgt.entityes.guides;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "PROFIT_AND_LOSS")
-public class ProfitAndLoss {
+public class ProfitAndLoss implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@NotNull
-	@Column(name = "ID_PL")
-	int idPl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_PL", unique = true, nullable = false)
+    int idPl;
 
-	@Column(name = "KOD_PROFIT_AND_LOSS_ITEM",unique = true)
-	String kodProfitAndLossItem;
+    @Column(name = "KOD_ITEM")
+    String kodItem;
 
-	@Column(name = "PROFIT_AND_LOSS_ITEM")
-	String profitAndLossItem;
+    @Column(name = "FASAD_KOD__ITEM", unique = true)
+    String fasadKodItem;
 
-	@Column(name = "PROFIT_AND_LOSS_ITEM_TYPE")
-	String profitAndLossItemType;
+    @Column(name = "NAME_ITEM", unique = true)
+    String nameItem;
 
-	@Column(name = "PROFIT_AND_LOSS_LEVEL")
-	boolean profitAndLossLevel;
+    @Column(name = "TYPE_ITEM")
+    String typeItem;
 
-	public ProfitAndLoss() {
-	}
+    @Column(name = "LEVEL_ITEM")
+    boolean levelItem;
 
-	public ProfitAndLoss(String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
-		this.kodProfitAndLossItem = kodProfitAndLossItem;
-		this.profitAndLossItem = profitAndLossItem;
-		this.profitAndLossItemType = profitAndLossItemType;
-		this.profitAndLossLevel = profitAndLossLevel;
-	}
+    public ProfitAndLoss() {
+    }
 
-	public ProfitAndLoss(int idPl, String kodProfitAndLossItem, String profitAndLossItem, String profitAndLossItemType, boolean profitAndLossLevel) {
-		this.idPl = idPl;
-		this.kodProfitAndLossItem = kodProfitAndLossItem;
-		this.profitAndLossItem = profitAndLossItem;
-		this.profitAndLossItemType = profitAndLossItemType;
-		this.profitAndLossLevel = profitAndLossLevel;
-	}
+    public ProfitAndLoss(String kodItem, String nameItem, String typeItem, boolean levelItem) {
+        this.kodItem = kodItem;
+        this.nameItem = nameItem;
+        this.typeItem = typeItem;
+        this.levelItem = levelItem;
+    }
 
-	public int getIdPl() {
-		return idPl;
-	}
+    public ProfitAndLoss(int idPl, String kodItem, String fasadKodItem, String nameItem, String typeItem, boolean levelItem) {
+        this.idPl = idPl;
+        this.kodItem = kodItem;
+        this.fasadKodItem = fasadKodItem;
+        this.nameItem = nameItem;
+        this.typeItem = typeItem;
+        this.levelItem = levelItem;
+    }
 
-	public void setIdPl(int idPl) {
-		this.idPl = idPl;
-	}
+    public ProfitAndLoss(String kodItem, String fasadKodItem, String nameItem, String typeItem, boolean levelItem) {
+        this.kodItem = kodItem;
+        this.fasadKodItem = fasadKodItem;
+        this.nameItem = nameItem;
+        this.typeItem = typeItem;
+        this.levelItem = levelItem;
+    }
 
-	public String getKodProfitAndLossItem() {
-		return kodProfitAndLossItem;
-	}
+    public int getIdPl() {
+        return idPl;
+    }
 
-	public void setKodProfitAndLossItem(String kodProfitAndLossItem) {
-		this.kodProfitAndLossItem = kodProfitAndLossItem;
-	}
+    public void setIdPl(int idPl) {
+        this.idPl = idPl;
+    }
 
-	public String getProfitAndLossItem() {
-		return profitAndLossItem;
-	}
+    public String getKodItem() {
+        return kodItem;
+    }
 
-	public void setProfitAndLossItem(String profitAndLossItem) {
-		this.profitAndLossItem = profitAndLossItem;
-	}
+    public void setKodItem(String kodItem) {
+        this.kodItem = kodItem;
+    }
 
-	public String getProfitAndLossItemType() {
-		return profitAndLossItemType;
-	}
+    public String getFasadKodItem() {
+        return fasadKodItem;
+    }
 
-	public void setProfitAndLossItemType(String profitAndLossItemType) {
-		this.profitAndLossItemType = profitAndLossItemType;
-	}
+    public void setFasadKodItem(String fasadKodItem) {
+        this.fasadKodItem = fasadKodItem;
+    }
 
-	public boolean isProfitAndLossLevel() {
-		return profitAndLossLevel;
-	}
+    public String getNameItem() {
+        return nameItem;
+    }
 
-	public void setProfitAndLossLevel(boolean profitAndLossLevel) {
-		this.profitAndLossLevel = profitAndLossLevel;
-	}
+    public void setNameItem(String nameItem) {
+        this.nameItem = nameItem;
+    }
 
-	@Override
-	public String toString() {
-		return "ProfitAndLoss{" +
-				"idPl=" + idPl +
-				", kodProfitAndLossItem='" + kodProfitAndLossItem + '\'' +
-				", profitAndLossItem='" + profitAndLossItem + '\'' +
-				", profitAndLossItemType='" + profitAndLossItemType + '\'' +
-				", profitAndLossLevel=" + profitAndLossLevel +
-				'}';
-	}
+    public String getTypeItem() {
+        return typeItem;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		ProfitAndLoss that = (ProfitAndLoss) o;
-		return idPl == that.idPl &&
-				profitAndLossLevel == that.profitAndLossLevel &&
-				Objects.equals(kodProfitAndLossItem, that.kodProfitAndLossItem) &&
-				Objects.equals(profitAndLossItem, that.profitAndLossItem) &&
-				Objects.equals(profitAndLossItemType, that.profitAndLossItemType);
-	}
+    public void setTypeItem(String typeItem) {
+        this.typeItem = typeItem;
+    }
 
-	@Override
-	public int hashCode() {
+    public boolean isLevelItem() {
+        return levelItem;
+    }
 
-		return Objects.hash(idPl, kodProfitAndLossItem, profitAndLossItem, profitAndLossItemType, profitAndLossLevel);
-	}
+    public void setLevelItem(boolean levelItem) {
+        this.levelItem = levelItem;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfitAndLoss that = (ProfitAndLoss) o;
+        return idPl == that.idPl &&
+                levelItem == that.levelItem &&
+                Objects.equals(kodItem, that.kodItem) &&
+                Objects.equals(fasadKodItem, that.fasadKodItem) &&
+                Objects.equals(nameItem, that.nameItem) &&
+                Objects.equals(typeItem, that.typeItem);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(idPl, kodItem, fasadKodItem, nameItem, typeItem, levelItem);
+    }
+
+    @Override
+    public String toString() {
+        return "ProfitAndLoss{" +
+                "idPl=" + idPl +
+                ", kodItem='" + kodItem + '\'' +
+                ", fasadKodItem='" + fasadKodItem + '\'' +
+                ", nameItem='" + nameItem + '\'' +
+                ", typeItem='" + typeItem + '\'' +
+                ", levelItem=" + levelItem +
+                '}';
+    }
 }

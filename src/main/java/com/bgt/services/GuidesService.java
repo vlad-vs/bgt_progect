@@ -12,12 +12,6 @@ import java.util.List;
 public class GuidesService {
 
 
-
-	@Autowired
-	ProfitAndLossDao plDao;
-
-
-
 	@Autowired
 	CurrencyDao currencyDao;
 
@@ -28,22 +22,6 @@ public class GuidesService {
 	BgtDao bgtDao;
 
 
-
-	public void addPlItem(ProfitAndLoss item){
-		plDao.insertProfitAndLossItem(item);
-	}
-
-	public void delPlItem(int id){
-		plDao.deleteProfitAndLossItemById(id);
-	}
-
-	public void updatePlItem(ProfitAndLoss item){
-		plDao.updateProfitAndLossItem(item);
-	}
-
-	public List<ProfitAndLoss> getAllPlItems() {
-		return plDao.getAllItems();
-	}
 
 
 	public void addCurrencyItem(Currency item){

@@ -8,91 +8,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/cash.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/profitAndLoss.css">
 </head>
 <body>
 <a href="/">Back</a>
 <h1>Справочник статей отчета оприбыли и убытках</h1>
 
-<form class="sigh-in-form" method="post">
+<header class="header">
 
-    <div class="form-group">
-        <label for="kodItem">Kod</label>
-        <input type="text" class="form-input-id" id="kodItem" name="kodItem">
-    </div>
+    <form class="sigh-in-form" method="post">
 
-    <div class="form-group">
-        <label for="item">Item</label>
-        <input type="text" class="form-input-item" id="item" name="item" placeholder="">
-    </div>
+        <div class="form-group-plItems">
+            <label for="ParentName">Группа:</label>
+            <input type="text" autocomplete="off" name="fItemName" class="form-input-item" id="ParentName"
+                   placeholder="" list="pname">
+            <datalist id="pname">
+                <select>
+                    <option>none</option>
+                    <c:forEach var="item" items="${list}">
+                        <option value="${item.nameItem}">${unitName.nameItem}</option>
+                    </c:forEach>
+                </select>
+            </datalist>
+        </div>
 
-    <div class="form-group">
-        <label for="type">Item type</label>
-        <input type="text" class="form-input-item" id="type" name="type" placeholder="">
-    </div>
+        <div class="form-group-plItems">
+            <label for="kodItem">Kod</label>
+            <input type="text" class="form-input-id" id="kodItem" name="kodItem">
+        </div>
 
-    <div class="form-group">
-        <label class="form-check-label" for="level"> Down level </label>
-        <input type="checkbox" class="form-check-input" id="level" name="level">
-    </div>
+        <div class="form-group-plItems">
+            <label for="item">Item</label>
+            <input type="text" class="form-input-item" id="item" name="item" placeholder="">
+        </div>
 
-    <input type="submit" class="btn btn-primary" value="Add" formaction="/addProfitAndLossItem"/>
+        <div class="form-group-plItems">
+            <label for="type">Item type</label>
+            <input type="text" class="form-input-item" id="type" name="type" placeholder="">
+        </div>
 
-    <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delCashFlowItem"/>--%>
+        <div class="form-group-plItems">
+            <label class="form-check-label" for="level"> Down level </label>
+            <input type="checkbox" class="form-check-input" id="level" name="level">
+        </div>
 
-</form>
+        <input type="submit" class="btnSaveItem" value="Add" formaction="/addProfitAndLossItem"/>
 
+        <%--<input type="submit" class="btn btn-primary" value="Delete" formaction="/delCashFlowItem"/>--%>
 
-<table class="table">
-    <tr class="table-head">
-        <td>Kod</td>
-        <td>Item</td>
-        <td>Type</td>
-        <td>Level (Down)</td>
-        <td>Delete</td>
-    </tr>
-
-
-    <form class="" method="post">
-
-        <c:forEach var="listPlItems" items="${listPlItems}">
-            <tr class="table-light">
-                <form method="post">
-                    <td><input formaction="/profitAndLossGuide/update/${listPlItems.idPl}" type="text"
-                               class="form-input-item" id="kodn" name="kodn"
-                               value="${listPlItems.kodProfitAndLossItem}"></td>
-                    <td><input formaction="/profitAndLossGuide/update/${listPlItems.idPl}" type="text"
-                               class="form-input-item" id="itemn" name="itemn" value="${listPlItems.profitAndLossItem}">
-                    </td>
-                    <td><input formaction="/profitAndLossGuide/update/${listPlItems.idPl}" type="text"
-                               class="form-input-item" id="typen" name="typen"
-                               value="${listPlItems.profitAndLossItemType}"></td>
-                    <td><input formaction="/profitAndLossGuide/update/${listPlItems.idPl}" type="text"
-                               class="form-input-item" id="leveln" name="leveln"
-                               value="${listPlItems.profitAndLossLevel}"></td>
-
-                        <%--<td>${listPlItems.kodProfitAndLossItem}</td>--%>
-                        <%--<td>${listPlItems.profitAndLossItem}</td>--%>
-                        <%--<td>${listPlItems.profitAndLossItemType}</td>--%>
-                        <%--<td>${listPlItems.profitAndLossLevel}</td>--%>
-
-                    <td>
-                            <%--<form method="post">--%>
-                        <input type="submit" value="del" formaction="/profitAndLossGuide/del/${listPlItems.idPl}"/>
-                            <%--</form>--%>
-                    </td>
-
-                    <td>
-
-                        <input type="submit" value="up" formaction="/profitAndLossGuide/update/${listPlItems.idPl}:${listPlItems.profitAndLossItem}:${listPlItems.profitAndLossItemType}:${listPlItems.kodProfitAndLossItem}:${listPlItems.profitAndLossLevel}"/>
-
-                    </td>
-                </form>
-            </tr>
-        </c:forEach>
     </form>
 
-</table>
 
+    <table class="table">
+        <tr class="table-head">
+            <td>Kod</td>
+            <td>Item</td>
+            <td>Type</td>
+            <td>Level (Down)</td>
+        </tr>
+
+
+        <form class="" method="post">
+
+            <c:forEach var="item" items="${list}">
+                <tr class="table-light">
+                    <form method="post">
+                        <td><input type="text" class="form-invput-item" name="fkodn" value="${item.fasadKodItem}"></td>
+                        <td><input type="text" class="form-input-item" name="itemn" value="${item.nameItem}"></td>
+                        <td><input type="text" class="form-input-item" name="typen" value="${item.typeItem}"></td>
+                        <td><input type="text" class="form-input-item" name="leveln" value="${item.levelItem}"></td>
+                        <td>
+                            <input class="btnUpItem" type="submit" value="up"
+                                   formaction="/profitAndLoss/up/${item.idPl}"/>
+                        </td>
+                    </form>
+
+                    <form method="post">
+                        <td>
+                            <input class="btnDelItem" type="submit" value="del"
+                                   formaction="/profitAndLoss/del/${item.idPl}"/>
+                        </td>
+                    </form>
+
+                </tr>
+            </c:forEach>
+        </form>
+
+    </table>
+</header>
 </body>
 </html>

@@ -1,8 +1,11 @@
 package com.bgt.controllers.guidesControllers;
 
+import com.bgt.entityes.guides.CashFlow;
 import com.bgt.entityes.guides.ProfitAndLoss;
 import com.bgt.services.GuidesService;
+import com.bgt.services.impl.ProfitAndLossService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,38 +20,49 @@ public class ProfitAndLossController {
 
 
 	@Autowired
-	GuidesService service;
+	ProfitAndLossService service;
 
-	@RequestMapping(value = "/profitAndLossGuide", method = RequestMethod.GET)
-	public String profitAndLossGuide(Model model){
-		List <ProfitAndLoss> list = service.getAllPlItems();
-		model.addAttribute("listPlItems", list);
-
-		return "/profitAndLossGuide";
+	@RequestMapping(value = "/profitAndLoss", method = RequestMethod.GET)
+	public String profitAndLossGuide(Model model) {
+		List <ProfitAndLoss> list = service.getAllItems();
+		model.addAttribute("list", list);
+		return "/profitAndLoss";
 	}
 
-	@RequestMapping(value = "/profitAndLossGuide/del/{id}")
+	@RequestMapping(value = "/profitAndLoss/del/{id}")
 	public String deleteprofitAndLossItemById(@PathVariable int id){
-		service.delPlItem(id);
-		return "redirect:/profitAndLossGuide";
+		service.deleteItemById(id);
+		return "redirect:/profitAndLoss";
 	}
 
 	@RequestMapping(value = "/addProfitAndLossItem", method = RequestMethod.POST)
 	public String addProfitAndLossItem(@RequestParam ("kodItem") String kod,
+									   @RequestParam ("fItemName") String fKodName,
 									   @RequestParam ("item") String item,
 									   @RequestParam ("type") String type,
-									   @RequestParam (value = "level", defaultValue = "false") Boolean level){
-		service.addPlItem(new ProfitAndLoss(kod,item,type,level));
-		return "redirect:/profitAndLossGuide";
+									   @RequestParam (value = "level", defaultValue = "false") Boolean level,
+									   Model model){
+		String returnStr = "redirect:/profitAndLoss";
+		try {
+			ProfitAndLoss cf = new ProfitAndLoss(kod,item,type,level);
+			ProfitAndLoss fCf = service.getItemByName(fKodName);
+			service.addItem(cf, fCf);
+		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+			model.addAttribute("error", "Введено уже существующее наименование подразделения или код");
+			model.addAttribute("errorHelp", "Вернитесь на предыдущую строку и проверьте поля КОД и НАИМЕНОВАНИЕ");
+			returnStr = "/exemption";
+		}
+		return returnStr;
 	}
 
-	@RequestMapping(value = "/profitAndLossGuide/update/{id}:{item}:{type}:{kod}:{level}", method = RequestMethod.POST)
+	@RequestMapping(value = "/profitAndLoss/up/{id}", method = RequestMethod.POST)
 	public String updateProfitAndLossItem(@PathVariable int id,
-										@PathVariable String kod,
-									   @PathVariable String item,
-									   @PathVariable String type,
-									   @PathVariable boolean level){
-		service.updatePlItem(new ProfitAndLoss(id,kod,item,type,level));
-		return "redirect:/profitAndLossGuide";
+										  @RequestParam ("fkodn") String fkod,
+										  @RequestParam ("itemn")  String item,
+										  @RequestParam ("typen")  String type,
+										  @RequestParam ("leveln")  boolean level){
+		service.updateItem(id,fkod,item,type,level);
+		return "redirect:/profitAndLoss";
 	}
 }

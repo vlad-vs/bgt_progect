@@ -44,13 +44,13 @@ public class CashFlowController {
 	}
 
 	@RequestMapping(value = "/cashFlow/del/{id}", method = RequestMethod.POST)
-	public String getCashFlowGuide(@PathVariable("id") int id) {
+	public String deleteCashFlowItem(@PathVariable("id") int id) {
 		service.deleteItemById(id);
 		return "redirect:/cashFlow";
 	}
 
 	@RequestMapping(value = "/cashFlow/up/{id}", method = RequestMethod.POST)
-	public String getCashFlowGuide(@PathVariable("id") int id,
+	public String updateCashFlowItem(@PathVariable("id") int id,
 								   @RequestParam("fKod") String fKod,
 								   @RequestParam("name") String name,
 								   @RequestParam(value = "level") boolean level) {
