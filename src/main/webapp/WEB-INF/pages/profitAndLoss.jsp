@@ -26,7 +26,7 @@
                 <select>
                     <option>none</option>
                     <c:forEach var="item" items="${list}">
-                        <option value="${item.nameItem}">${unitName.nameItem}</option>
+                        <option value="${item.nameItem}">${item.nameItem}</option>
                     </c:forEach>
                 </select>
             </datalist>
