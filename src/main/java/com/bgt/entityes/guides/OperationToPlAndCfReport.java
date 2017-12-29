@@ -6,6 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "OPERATIONS")
 public class OperationToPlAndCfReport {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_OPERATION", unique = true, nullable = false)
@@ -23,8 +24,14 @@ public class OperationToPlAndCfReport {
     @Column(name = "ID_PL", unique = true)
     private int idPl;
 
+    @Transient
+    private String plName;
+
     @Column(name = "ID_CF", unique = true)
     private int idCf;
+
+    @Transient
+    private String cfName;
 
     public OperationToPlAndCfReport() {
     }
@@ -42,6 +49,22 @@ public class OperationToPlAndCfReport {
         this.operationItem = operationItem;
         this.idPl = idPl;
         this.idCf = idCf;
+    }
+
+    public String getPlName() {
+        return plName;
+    }
+
+    public void setPlName(String plName) {
+        this.plName = plName;
+    }
+
+    public String getCfName() {
+        return cfName;
+    }
+
+    public void setCfName(String cfName) {
+        this.cfName = cfName;
     }
 
     public int getIdOperation() {
