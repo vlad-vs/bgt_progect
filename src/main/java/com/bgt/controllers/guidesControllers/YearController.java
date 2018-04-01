@@ -13,22 +13,22 @@ public class YearController {
 	@Autowired
 	GuidesService service;
 
-	@RequestMapping(value = "/yearGuide",method = RequestMethod.GET)
+	@RequestMapping(value = "/year",method = RequestMethod.GET)
 	public String getYearGuide(Model model){
 		model.addAttribute("list",service.getAllYearItems());
-		return "/yearGuide";
+		return "/year";
 	}
 
-	@RequestMapping(value = "addYearGuideItem",method = RequestMethod.POST)
+	@RequestMapping(value = "addYearItem",method = RequestMethod.POST)
 	public String addYearGuideItem(@RequestParam ("item") int item) {
 		service.addYearItem(new Year(item));
 
-		return "redirect:/yearGuide";
+		return "redirect:/year";
 	}
-	@RequestMapping(value = "/yearGuide/del/{id}")
+	@RequestMapping(value = "/year/del/{id}")
 	public String deleteYearItem(@PathVariable int id){
 		service.delYearItem(id);
-		return "redirect:/yearGuide";
+		return "redirect:/year";
 
 	}
 }

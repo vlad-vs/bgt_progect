@@ -1,7 +1,5 @@
 package com.bgt.entityes.guides;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,6 +1,7 @@
 package com.bgt.controllers.guidesControllers;
 
 
+import com.alibaba.fastjson.JSON;
 import com.bgt.entityes.guides.CashFlow;
 import com.bgt.services.impl.CashFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class CashFlowController {
@@ -17,7 +20,16 @@ public class CashFlowController {
 
 	@RequestMapping(value = "/cashFlow", method = RequestMethod.GET)
 	public String getCashFlowGuide(Model model) {
-		model.addAttribute("list", service.getAllItems());
+		List list = service.getAllItems();
+		String jsonString = JSON.toJSONString(list);
+
+		System.err.println(list.get(0));
+		System.out.println(list.get(0));
+
+		model.addAttribute("jsonString", jsonString);
+
+
+		model.addAttribute("list", list);
 		return "/cashFlow";
 	}
 

@@ -21,7 +21,7 @@ public class CurrencyDao {
 	}
 
 	public List<Currency> getAllCurrencyItems() {
-		String sqlQuery = "SELECT ALL * FROM CURRENCY_GUIDE ORDER BY SHORT_CURRENCY_NAME";
+		String sqlQuery = "SELECT ALL * FROM CURRENCY ORDER BY SHORT_CURRENCY_NAME";
 		Query query = entityManager.createNativeQuery(sqlQuery,Currency.class);
 		return query.getResultList();
 	}

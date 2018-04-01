@@ -17,7 +17,7 @@ public class YearDao {
 
 	@Transactional
 	public List<Year> getAllYearItems(){
-		String sqlQuery = "SELECT ALL * FROM YEARS_GUIDE ORDER BY YEAR";
+		String sqlQuery = "SELECT ALL * FROM YEARS ORDER BY YEAR";
 		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, Year.class);
 		return nativeQuery.getResultList();
 	}

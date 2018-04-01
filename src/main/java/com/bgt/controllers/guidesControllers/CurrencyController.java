@@ -15,17 +15,17 @@ public class CurrencyController {
 	@Autowired
 	GuidesService service;
 
-	@RequestMapping(value = "/currencyGuide",method = RequestMethod.GET)
+	@RequestMapping(value = "/currency",method = RequestMethod.GET)
 	public String getCurrencyGuide(Model model){
 		model.addAttribute("list",service.getAllCurrencyItems());
-		return "/currencyGuide";
+		return "/currency";
 	}
 
-	@RequestMapping(value = "/addCurrencyGuideItem",method = RequestMethod.POST)
+	@RequestMapping(value = "/addCurrencyItem",method = RequestMethod.POST)
 	public String getCurrencyGuide(@RequestParam("shortItem") String shortName,
 									@RequestParam ("fullItem")  String fullName){
 		service.addCurrencyItem(new Currency(shortName,fullName));
-		return "redirect:/currencyGuide";
+		return "redirect:/currency";
 	}
 
 

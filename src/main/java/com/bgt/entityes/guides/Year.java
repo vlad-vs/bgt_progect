@@ -1,7 +1,5 @@
 package com.bgt.entityes.guides;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -11,7 +9,6 @@ public class Year {
 
 	@Id
 	@Column (name = "ID_YEAR")
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int idYear;
 

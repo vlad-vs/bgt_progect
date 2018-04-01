@@ -1,6 +1,5 @@
 package com.bgt.entityes.guides;
 
-import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,7 +10,6 @@ public class CashFlow {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	@NotNull
 	@Column(name = "ID_CF",unique = true)
 	private int idCf;
 

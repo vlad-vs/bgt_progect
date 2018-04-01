@@ -18,7 +18,7 @@ public class BgtDao {
 
 	@Transactional
 	public List<Bgt> getAllBgtItems(){
-		String sqlQuery = "SELECT ALL * FROM BGT_GUIDE ORDER BY KOD_BGT";
+		String sqlQuery = "SELECT ALL * FROM BGT ORDER BY KOD_BGT";
 		Query nativeQuery = entityManager.createNativeQuery(sqlQuery, Bgt.class);
 		return nativeQuery.getResultList();
 	}
