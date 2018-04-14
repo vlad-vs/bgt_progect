@@ -23,12 +23,7 @@ public class CashFlowController {
 		List list = service.getAllItems();
 		String jsonString = JSON.toJSONString(list);
 
-		System.err.println(list.get(0));
-		System.out.println(list.get(0));
-
 		model.addAttribute("jsonString", jsonString);
-
-
 		model.addAttribute("list", list);
 		return "/cashFlow";
 	}

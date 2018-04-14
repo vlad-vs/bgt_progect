@@ -27,15 +27,15 @@ public class OperationToPlAndCfController {
 	@Autowired
 	CashFlowService cfService;
 
-	@RequestMapping(value = "/operationToPlAndCfReport", method = RequestMethod.GET)
+	@RequestMapping(value = "/operationToPlAndCf", method = RequestMethod.GET)
 	public String getOperationToPlAndCfReport(Model model) {
 		model.addAttribute("operationList", operationService.getAllItems());
 		model.addAttribute("plList",plService.getAllItems());
 		model.addAttribute("cfList",cfService.getAllItems());
-		return "/operationToPlAndCfReport";
+		return "/operationToPlAndCf";
 	}
 
-	@RequestMapping(value = "/addOperationToPlAndCfReport", method = RequestMethod.POST)
+	@RequestMapping(value = "/addOperationToPlAndCf", method = RequestMethod.POST)
 	public String addOperationToPlAndCfReportItem(@RequestParam("kodItem") String kodItem,
 												  @RequestParam("item") String item,
 												  @RequestParam("idPl") int idPl,
@@ -43,7 +43,7 @@ public class OperationToPlAndCfController {
 												  @RequestParam("fItemName") String fItemName,
 												  Model model) {
 
-		String returnStr = "redirect:/operationToPlAndCfReport";
+		String returnStr = "redirect:/operationToPlAndCf";
 		try {
 			OperationToPlAndCfReport cf = new OperationToPlAndCfReport(kodItem, item, idPl,idCf);
 			OperationToPlAndCfReport fCf = operationService.getItemByName(fItemName);
@@ -58,7 +58,7 @@ public class OperationToPlAndCfController {
 		return returnStr;
 	}
 
-	@RequestMapping(value = "/operationToPlAndCfReport/del/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/operationToPlAndCf/del/{id}", method = RequestMethod.POST)
 	public String deleteOperationToPlAndCfReportItem(@PathVariable("id") int id) {
 		operationService.deleteItemById(id);
 		return "redirect:/operationToPlAndCfReport";

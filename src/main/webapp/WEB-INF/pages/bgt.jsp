@@ -18,7 +18,7 @@
 
     <div class="form-group">
         <label for="kodItemBgt">Kod</label>
-        <input type="text" class="form-input-item" id="kodItemBgt" name="kodItemBgt" placeholder="">
+        <input type="text" class="form-input-item" id="kodItemBgt" name="kodItemBgt">
     </div>
 
     <div class="form-group">
@@ -26,7 +26,7 @@
         <input type="text" class="form-input-item" id="bgtName" name="bgtName" placeholder="">
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Add" formaction="/addBgtGuideItem"/>
+    <input type="submit" class="btn btn-primary" value="Add" formaction="/addBgtItem"/>
 
 </form>
 
@@ -51,7 +51,7 @@
             </td>
 
             <td>
-                    <input type="submit" value="up" formaction="/currencyGuide/update/${list.idBgt}:${list.kodBgt}:${list.bgtName}"/>
+                    <input type="submit" value="up" formaction="/currency/update/${list.idBgt}:${list.kodBgt}:${list.bgtName}"/>
             </td>
         </tr>
     </c:forEach>

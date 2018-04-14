@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class BgtGuideController {
+public class BgtController {
 
 	@Autowired
 	GuidesService service;
 
-	@RequestMapping(value = "/bgtGuide",method = RequestMethod.GET)
+	@RequestMapping(value = "/bgt",method = RequestMethod.GET)
 	public String getBgtGuide(Model model){
 		model.addAttribute("list",service.getAllBtgItems());
-		return "/bgtGuide";
+		return "/bgt";
 	}
 
-	@RequestMapping(value = "/addBgtGuideItem",method = RequestMethod.POST)
+	@RequestMapping(value = "/addBgtItem",method = RequestMethod.POST)
 	public String addBgtGuideItem(@RequestParam ("kodItemBgt") String item,
 								  @RequestParam ("bgtName") String bgtName) {
 		service.addBgtItem(new Bgt(item,bgtName));
-		return "redirect:/bgtGuide";
+		return "redirect:/bgt";
 	}
-	@RequestMapping(value = "/bgtGuide/del/{id}")
+	@RequestMapping(value = "/bgt/del/{id}")
 	public String deleteBgtItem(@PathVariable int id){
 		service.delYearItem(id);
-		return "redirect:/bgtGuide";
+		return "redirect:/bgt";
 
 	}
 }

@@ -33,14 +33,7 @@
 </div>
 
 
-<div class="form-group">
-    <span for="bgtName">Название бюджета</span>
-    <select title="Выбери компанию">
-        <c:forEach var="companyName" items="${companyNames}">
-            <option>${companyName.nameCompany}</option>
-        </c:forEach>
-    </select>
-</div>
+
 
 </body>
 </html>

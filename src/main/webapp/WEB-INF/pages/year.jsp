@@ -21,7 +21,7 @@
         <input pattern="[0-9]{4}" title="Год цифрами" type="text" class="form-input-item" id="item" name="item" placeholder="">
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Add" formaction="/addYearGuideItem"/>
+    <input type="submit" class="btn btn-primary" value="Add" formaction="/addYearItem"/>
 
 </form>
 

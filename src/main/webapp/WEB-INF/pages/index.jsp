@@ -8,50 +8,33 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/index.css">
 </head>
 <body>
 
-<div class="container">
-    <a href="/users">Users guide</a>
-    <br>
-    <a href="/cashFlow">Cash flow guide</a>
-    <br>
-    <a href="/balance">Balance guide</a>
-    <br>
-    <a href="/profitAndLoss">Profit and loss guide</a>
-    <br>
-    <a href="/currency">Currency guide</a>
-    <br>
-    <a href="/year">Year guide</a>
-    <br>
-    <a href="/bgt">Bgt Guide</a>
-    <br>
-    <a href="/company">Company Guide</a>
-    <br>
-    <a href="/standartBgt">Standart bgt</a>
-    <br>
-    <a href="/units">UNITS</a>
-    <br>
-    <a href="/operationToPlAndCfReport">UNITS</a>
+<header class="header">
+    <h1>Budgeting of the company "Hello world"</h1>
+</header>
 
+<div class="wrapper">
+
+    <div class="guides">
+        <ul>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/users">Users</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/year">Years</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/currency">Currency</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/units">Units</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/bgt">Bgt</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/cashFlow">Cash flow items</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/balance">Balance guide</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/profitAndLoss">Profit and loss</a></li>
+            <li class="wrapButtonGuide"><a class="buttonGuide" href="/operationToPlAndCf">Operation</a></li>
+        </ul>
+    </div>
 </div>
 <br>
-<br>
-<br>
-<br>
-<br>
+<a href="/standartBgt">Standart bgt</a>
 
-<%--<h1>Form</h1>--%>
-
-<%--<table>--%>
-    <%--<form:form action="/cfItem" method="post" commandName="cfItem">--%>
-    <%--<tr>  <td>Country Name:</td> <td><form:input path="cashFlowItem"/> </td> </tr>--%>
-    <%--<tr> <td> PM Name :</td> <td><form:input path="kodCashFlowItem"/> </td> </tr>--%>
-    <%--<tr> <td colspan=2>   <form:button type="submit"/></td>--%>
-        <%--</form:form>--%>
-<%--</table>--%>
-
-<%--${cfItem}--%>
 
 </body>
 </html>

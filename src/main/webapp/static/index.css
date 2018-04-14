@@ -1,0 +1,18 @@
+.header {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    border-bottom: 2px solid lightgrey;
+}
+
+/*.wrapButtonGuide {*/
+    /*display: block;*/
+    /*box-sizing: border-box;*/
+    /*border: 1px solid lightgrey;*/
+/*}*/
+
+/*.buttonGuide{*/
+    /*width: 150px;*/
+    /*!*height: 20px;*!*/
+    /*padding: 25px;*/
+/*}*/
